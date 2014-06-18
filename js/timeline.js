@@ -5,6 +5,8 @@ function Timeline (data) {
       PERIOD_FULL = 'full',
       PERIOD_FREE = 'free',
       MAX_MONTH_TILL_AVAILABLE = 1,
+      SHOW_AVAILABLE_TEXT = 'Show available consultants',
+      SHOW_ALL_TEXT = 'Show all consultants',
       notActualResources = 0,
       latestAssignment = void(0),
       timeFormat = 'DD/MM/YYYY',
@@ -32,11 +34,31 @@ function Timeline (data) {
         freeGapAtEnd: {
           'mobile': 0,
           'other': 3
+        },
+        kineticOptions: {
+          'mobile': {},
+          'other': {
+            'y': false
+          }
+        },
+        titles: {
+          'full': 'Busy',
+          'free': 'Available'
         }
       },
       mode = md.phone() ? MOBILE_MODE : OTHER_MODE,
       _redraw, _drawScale, _buildPeriod, _createCVWrap,
-      _appendTimeLine, _parse, _adjustMobileView;
+      _appendTimeLine, _parse, _adjustMobileView, _getNow, 
+      _buildAvailabilityLine, _drawFilterControls, _toggleResults,
+      _isAvailableSoon, _getStartOfCount;
+
+  _getStartOfCount = function() {
+    return moment().subtract('months', 1);
+  };
+
+  _getNow = function() {
+    return moment();
+  };
 
   _adjustMobileView = function () {
     if(mode !== MOBILE_MODE) return;
@@ -73,18 +95,25 @@ function Timeline (data) {
 
   _drawScale = function () {
     var container = $('.timeline .month-scale'),
-        now = moment(),
-        howManyMonths = latestAssignment.diff(now, 'months');
+        start = _getStartOfCount(),
+        now = _getNow(),
+        howManyMonths = latestAssignment.diff(start, 'months');
     for(var i = 0; i < howManyMonths; i++) {
-      container.append('<span class="scale-entry">' + now.format('MMM') + ' ' + now.year() + '</span>');
-      now.add('months', 1);
+      var currentClass = start.diff(now, 'months') === 0 ? 'current' : '';
+      container.append('<span class="scale-entry ' + currentClass + '">' + start.format('MMM') + ' ' + start.year() + '</span>');
+      start.add('months', 1);
     }
   };
 
-  _buildPeriod = function (periodObj) {
-    var freeOrNot = periodObj.type == 'full' ? 'Hired' : 'Free',
-        period = $('<div class="time ' + periodObj.type + '"><span class="service-text">' + freeOrNot + '</span></div>'),
-        periodLength = periodObj.duration * settings.pxPerMonth[mode] + (periodObj.duration - 1) * 4;
+  _buildPeriod = function (periodObj, isFirst) {
+    var marginBetweenElements = 4, // without border, just empty space
+        sideMargin = marginBetweenElements / 2,
+        borderWidth = 1,
+        freeOrNot = settings.titles[periodObj.type],
+        padding = isFirst ? ((periodObj.duration * sideMargin) + (periodObj.duration - 1) * sideMargin) : 
+                            (periodObj.duration * marginBetweenElements) - (marginBetweenElements + borderWidth),
+        periodLength = periodObj.duration * settings.pxPerMonth[mode] + padding,
+        period = $('<div class="time ' + periodObj.type + '"><span class="service-text">' + freeOrNot + '</span></div>');
 
     period.css(settings.timelineDirection[mode], periodLength);
 
@@ -100,7 +129,7 @@ function Timeline (data) {
 
   _appendTimeline = function (timelineData, isOdd, isVisible) {
     var specsContainer = $('.timeline .specs'),
-        timerangesContainer = $('.timeline .timeranges'),
+        timerangesContainer = $('.timeline .timeranges .rows-wrap'),
         rowLength = 0,
         visibility = isVisible ? '' : 'hidden not-actual',
         oddEven = isOdd ? 'odd' : 'even';
@@ -108,9 +137,9 @@ function Timeline (data) {
         spec = $('<div class="spec ' + oddEven + ' ' + visibility + '">' + _createCVWrap(timelineData.name) + '</div>');
 
     for(var i = 0; i < timelineData.dates.length; i++) {
-      var periodObj = _buildPeriod(timelineData.dates[i]);
+      var periodObj = _buildPeriod(timelineData.dates[i], i === 0);
 
-      rowLength += periodObj.length + 8;
+      rowLength += periodObj.length + 4;
       row.append(periodObj.obj);
     }
 
@@ -124,16 +153,13 @@ function Timeline (data) {
 
   _toggleResults = function() {
     $('.timeline .not-actual').toggleClass('hidden');
-    var linkText = $('.timeline .filtered a').html();
-    $('.timeline .filtered a').html(linkText === 'Show all' ? 'Show available' : 'Show all');
+    var linkText = $('.timeline .filtered').html();
+    $('.timeline .filtered').html(linkText === SHOW_ALL_TEXT ? SHOW_AVAILABLE_TEXT : SHOW_ALL_TEXT);
   };
 
   _drawFilterControls = function() {
     if(notActualResources) {
-      var filteredControls = $('<div class="filtered" />'),
-          notAvailableMessage = notActualResources + (notActualResources > 1 ? ' resources are ' : ' resource is ') + 'not available soon';
-      filteredControls.append($('<span>').html(notAvailableMessage))
-                      .append($('<a href="javascript:void(0)">Show all</a>').click(_toggleResults));
+      var filteredControls = $('<a href="javascript:void(0)" class="filtered">' + SHOW_ALL_TEXT + '</a>').click(_toggleResults);
       $('.timeline').prepend(filteredControls);
     }
   };
@@ -156,7 +182,7 @@ function Timeline (data) {
     else if(timelineObj.dates.length > 1) {
       while(i < timelineObj.dates.length && !isAvailable) {
         if(timelineObj.dates[i].type === PERIOD_FREE) {
-          var monthsTillAvailable = Math.abs(timelineObj.dates[i].start.diff(moment(), 'months'));
+          var monthsTillAvailable = Math.abs(timelineObj.dates[i].start.diff(_getNow(), 'months'));
           isAvailable = monthsTillAvailable <= MAX_MONTH_TILL_AVAILABLE;
           break;
         }
@@ -177,7 +203,8 @@ function Timeline (data) {
             'dates': []
           },
           dateRanges = [],
-          lastAssignmentEnded = void(0);
+          lastAssignmentEnded = void(0),
+          now = _getStartOfCount();
 
       resourceEntry.name = item.title['$t'];
 
@@ -185,7 +212,7 @@ function Timeline (data) {
           dateRanges = item.content['$t'].split(':')[1].split(',');
       }
       else {
-        lastAssignmentEnded = moment();
+        lastAssignmentEnded = now;
         resourceEntry.start = lastAssignmentEnded;
         resourceEntry.end = lastAssignmentEnded;
       }
@@ -194,7 +221,6 @@ function Timeline (data) {
         var dates = dateRanges[i].split('-'),
             begin, end, durationInMonths = 0,
             availabilityLine = {},
-            now = moment(),
             durationFromNow = 0,
             durationTillNow = 0;
 
@@ -257,7 +283,6 @@ function Timeline (data) {
 
     for(var i = 0; i < timelines.length; i++) {
       var emptySpace = Math.abs(latestAssignment.diff(timelines[i].end, 'months')),
-          now = moment(),
           isVisible = false;
 
       if(emptySpace > 0) {
@@ -276,7 +301,7 @@ function Timeline (data) {
     $('.timeline .month-scale, .timeline .row').css(settings.timelineDirection[mode], maxRowLength);
     
     _adjustMobileView();
-    $(settings.kineticContainer[mode]).kinetic();
+    $(settings.kineticContainer[mode]).kinetic(settings.kineticOptions[mode]);
 
     if(mode === MOBILE_MODE) {
       var _scrollLeft = $.Kinetic.prototype.scrollLeft,

@@ -4,12 +4,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-p, div {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
-}
-
 a, a:hover, a:active {
   text-decoration: none !important;
   outline: none !important;
@@ -235,12 +229,9 @@ a, a:hover, a:active {
 
     .filtered {
       padding: 10px;
-
-      a {
-        color: @orange;
-        display: inline-block;
-        margin-left: 10px;
-      }
+      color: @orange;
+      display: block;
+      clear: both;
     }
 
     .legend {
@@ -277,9 +268,14 @@ a, a:hover, a:active {
         border-left: 1px solid #d2d1d1;
         text-align: center;
         padding: 0 3px;
+        height: @scale-height;
 
         &:first-child {
           border-left: none;
+        }
+
+        &.current {
+          background-color: #FCED9E;
         }
       }
     }
@@ -353,15 +349,26 @@ a, a:hover, a:active {
       .transition(all 0.5s ease);
       /*.box-shadow(5px 0px 10px -6px #888);*/
 
+      .rows-wrap {
+        margin-top: -(@scale-height - 20);
+      }
+
       .row {
         .transition(all 0.5s ease);
 
         .time {
-          margin: 4px 0 4px 4px;
-          min-width: 100px;
+          margin: 4px 0 4px 5px;
           height: 32px;
           padding: 6px;
           color: white;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
 
           &.full {
             background-color: @timeline-full;
@@ -402,6 +409,43 @@ a, a:hover, a:active {
   }
 }
 
+.mobile {
+  .section {
+    .timeline {
+      .specs {
+        .spec {
+          border-bottom: 1px solid white;
+
+          a {
+            padding: 9px;
+            padding-left: 42px;
+
+            .cv-mark {
+              padding: 9px 0 9px 5px;
+              width: 25px;
+              left: 0;
+              right: auto;
+              text-indent: -28px;
+
+              &:after {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                right: -12px;
+                width: 0;
+                height: 0;
+                border-top: 19px solid transparent;
+                border-bottom: 19px solid transparent;
+                border-left: 12px solid @orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .phone {
   .section {
     .timeline {
@@ -420,16 +464,34 @@ a, a:hover, a:active {
         .spec {
           float: left;
           width: 85px;
-          height: 45px;
+          height: 70px;
+          border-bottom: none;
+          border-right: 1px solid white;
 
           a {
-            padding: 5px 10px;
+            padding: 30px 10px 5px 10px;
             .font-size(13);
             text-align: center;
             height: 100%;
 
             .cv-mark {
-              display: none;
+              width: 100%;
+              text-indent: 0;
+              padding: 5px 9px 0;
+              left: 0;
+              right: auto;
+              text-align: center;
+
+              &:after {
+                bottom: -7px;
+                left: 0;
+                right: auto;
+                top: auto;
+                border-top: 7px solid #ff6426;
+                border-right: 42px solid transparent;
+                border-left: 42px solid transparent;
+                border-bottom: none;
+              }
             }
           }
         }
@@ -457,6 +519,10 @@ a, a:hover, a:active {
         .box-shadow(0px -5px 11px -4px #888888);
       }
 
+      .rows-wrap {
+        margin: 0;
+      }
+
       .row {
         width: 30px;
         float: left;
@@ -472,6 +538,10 @@ a, a:hover, a:active {
           margin: 0 4px 4px;
           height: 100px;
           width: 100%;
+
+          &:first-child {
+            margin-left: 4px;
+          }
         }
       }
     }
