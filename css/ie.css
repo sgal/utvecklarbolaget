@@ -1,0 +1,48 @@
+.col-xs-12, .col-sm-12 {
+  width: 33%;
+  float: left;
+}
+
+.section .section-text-wide,
+.section .section-text-narrow {
+  width: auto;
+}
+
+.section.front {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./../img/main.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/main.jpg', sizingMethod='scale')";
+}
+
+.sponsors {
+  text-align: center;
+}
+
+.ie-full-background {
+  max-width: 100%;
+  height: auto;
+}
+
+.section.front .container {
+  padding: 0;
+}
+
+.company-name, .slogan {
+  display: none;
+}
+
+.styled-for-touch .hover-link {
+  display: none;
+}
+
+.styled-for-touch:hover .hover-link {
+  display: block;
+}
+
+.browsehappy {
+  text-align: center;
+  padding: 5px;
+}
+
+.browsehappy a {
+  color: blue!important;
+}
