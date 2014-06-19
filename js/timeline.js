@@ -230,9 +230,10 @@ function Timeline (data) {
         durationTillNow = now.diff(begin, 'months');
 
         if(resourceEntry.dates.length === 0) {
-          var dateGap = begin.diff(now, 'months');
+          var dateGap = begin.diff(now, 'days');
 
-          if(dateGap > 0) {
+          if(dateGap > 15) {
+            dateGap = Math.round(dateGap / 30);
             resourceEntry.dates.push(
               _buildAvailabilityLine(PERIOD_FREE, dateGap, now, begin)
             );
