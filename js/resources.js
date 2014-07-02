@@ -73,6 +73,10 @@ $(document).ready(function() {
     });
   };
 
+  function showError(error) {
+    $('.timeline').empty().append('<p class="text-danger">Something went wrong, please try to reload the page</p>').show();
+  }
+
   // main logic starts
   $.ajax({ 
     url: protocol + '://spreadsheets.google.com/feeds/list/' + key + '/od6/public/basic?hl=en_US&alt=json', 
@@ -82,7 +86,7 @@ $(document).ready(function() {
       timeline.redraw();
     },
     error: function(error) {
-      console.log(error);
+      showError(error);
     }
   });
 });

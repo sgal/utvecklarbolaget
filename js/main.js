@@ -1,7 +1,7 @@
 var md = new MobileDetect(window.navigator.userAgent);
-if(md.mobile()) {
-  $('html').addClass('mobile');
-}
+md.mobile() && $('html').addClass('mobile');
+md.phone() && $('html').addClass('phone');
+
 $(document).ready(function() {
   var imgAspectRatio = 2.511, // 1919 x 764
       isNavigating = false,

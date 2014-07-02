@@ -1,3 +1,4 @@
+@import (less) "bootstrap.min.css";
 @import 'utils';
 
 body {
@@ -39,6 +40,23 @@ a, a:hover, a:active {
   -khtml-opacity: 0.8;
   opacity: 0.8;
   background-color: black;
+}
+
+.we-re-hiring {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 10px;
+  width: 123px;
+  height: 123px;
+  font-size: 0;
+  color: transparent;
+  background: transparent url(../img/hiring.png) 0 0 no-repeat;
+  z-index: 99;
+
+  &:hover {
+    background-position: -122px 0;
+  }
 }
 
 .orange-btn {
@@ -482,6 +500,10 @@ a, a:hover, a:active {
 
   .small-section-column {
     text-align: center;
+
+    .window-wrap {
+      cursor: default;
+    }
     
     .area-icon {
       height: 46px;
@@ -624,12 +646,6 @@ a, a:hover, a:active {
       color: @orange;
       .font-size(26);
     }
-
-    /*h4 {
-      color: @text-color;
-      margin-bottom: 40px;
-      .font-size(22);
-    }*/
   }
 }
 
@@ -650,6 +666,16 @@ a, a:hover, a:active {
           }
         }
       }
+    }
+  }
+
+  .we-re-hiring {
+    width: 80px;
+    height: 80px;
+    background-size: 160px 80px;
+
+    &:hover {
+      background-position: 0 0;
     }
   }
 
@@ -758,6 +784,12 @@ a, a:hover, a:active {
         }
       }
     }
+  }
+}
+
+.phone {
+  .we-re-hiring {
+    display: none;
   }
 }
 
