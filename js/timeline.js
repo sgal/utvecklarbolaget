@@ -97,9 +97,9 @@ function Timeline (data) {
     var container = $('.timeline .month-scale'),
         start = _getStartOfCount(),
         now = _getNow(),
-        howManyMonths = latestAssignment.diff(start, 'months');
+        howManyMonths = Math.round(latestAssignment.diff(start, 'months', true));
     for(var i = 0; i < howManyMonths; i++) {
-      var currentClass = start.diff(now, 'months') === 0 ? 'current' : '';
+      var currentClass = start.isSame(now, 'month') ? 'current' : '';
       container.append('<span class="scale-entry ' + currentClass + '">' + start.format('MMM') + ' ' + start.year() + '</span>');
       start.add('months', 1);
     }
@@ -213,8 +213,8 @@ function Timeline (data) {
       }
       else {
         lastAssignmentEnded = now;
-        resourceEntry.start = lastAssignmentEnded;
-        resourceEntry.end = lastAssignmentEnded;
+        resourceEntry.start = moment(lastAssignmentEnded);
+        resourceEntry.end = moment(lastAssignmentEnded);
       }
 
       for(var i = 0; i < dateRanges.length; i++) {
@@ -283,7 +283,7 @@ function Timeline (data) {
     _drawScale();
 
     for(var i = 0; i < timelines.length; i++) {
-      var emptySpace = Math.abs(latestAssignment.diff(timelines[i].end, 'months')),
+      var emptySpace = Math.round(Math.abs(latestAssignment.diff(timelines[i].end, 'months', true))),
           isVisible = false;
 
       if(emptySpace > 0) {
