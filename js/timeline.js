@@ -33,7 +33,7 @@ function Timeline (data) {
         },
         freeGapAtEnd: {
           'mobile': 0,
-          'other': 3
+          'other': 7
         },
         kineticOptions: {
           'mobile': {},
@@ -208,10 +208,15 @@ function Timeline (data) {
 
       resourceEntry.name = item.title['$t'];
 
-      if(item.content['$t'] && item.content['$t'] != '') {
+      if(item.content['$t'] && item.content['$t'] !== '') {
           dateRanges = item.content['$t'].split(':')[1].split(',');
+          var end = dateRanges[dateRanges.length - 1].split('-');
+          end = moment($.trim(end[1]), timeFormat);
       }
-      else {
+
+      if(!item.content['$t'] || item.content['$t'] === '' || 
+         Math.round(end.diff(now, 'days') / 30) <= 0) {
+        dateRanges = [];
         lastAssignmentEnded = now;
         resourceEntry.start = moment(lastAssignmentEnded);
         resourceEntry.end = moment(lastAssignmentEnded);
@@ -264,7 +269,7 @@ function Timeline (data) {
 
           // assignment started in past time - add padding
           if(durationTillNow > 0 && durationTillNow < durationInMonths) {
-            durationInMonths -= durationTillNow;    
+            durationInMonths -= durationTillNow;
           }
 
           if(durationInMonths > 0) {
@@ -274,16 +279,15 @@ function Timeline (data) {
           }
         }
       }
-      resourceEntry.end = lastAssignmentEnded;
+      resourceEntry.end = moment(lastAssignmentEnded);
       timelines.push(resourceEntry);
     });
-
     latestAssignment.add('months', settings.freeGapAtEnd[mode]);
 
     _drawScale();
 
     for(var i = 0; i < timelines.length; i++) {
-      var emptySpace = Math.round(Math.abs(latestAssignment.diff(timelines[i].end, 'months', true))),
+      var emptySpace = Math.round(Math.abs(latestAssignment.diff(timelines[i].end, 'days', true) / 30)),
           isVisible = false;
 
       if(emptySpace > 0) {
