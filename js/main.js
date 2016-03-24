@@ -65,10 +65,10 @@ $(document).ready(function() {
       'border-top-width': topLength
     });
 
-    $('.section.black, .section.careers').css({
+    /*$('.section.black, .section.careers').css({
       'margin-top': -topLength,
       'padding-top': topLength
-    });
+    });*/
   };
 
   function highLightMenuFromHash() {

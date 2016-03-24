@@ -7,6 +7,7 @@ java -jar compiler.jar --js js/vendor/jquery.animate.enhanced.min.js js/vendor/j
 java -jar compiler.jar --js js/vendor/moment.min.js js/vendor/jquery.kinetic.min.js js/timeline.js js/resources.js --js_output_file js/resources.min.js
 
 rm -rf build
+rm ub.zip
 mkdir build
 
 cp -r css build/css/
@@ -18,3 +19,6 @@ cp *.html build/
 
 find build/css/ -name *.less -type f -delete
 find build/js/ ! -name *.min.js -type f -delete
+
+cd build
+zip -r ../ub.zip * -x "*/.DS_Store"

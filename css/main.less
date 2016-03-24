@@ -88,6 +88,66 @@ a, a:hover, a:active {
   text-decoration: none;
 }
 
+blockquote {
+  p {
+    font-style: italic;
+    font-size: 1.5em;
+  }
+
+  footer {
+    font-size: 1.5em;
+  }
+}
+
+blockquote {
+  font-family: 'Open Sans', sans-serif;
+  border-left: none;
+
+  footer {
+    font-weight: lighter;
+    &:before {
+      content: '';
+    }
+  }
+}
+
+.quote {
+  margin-bottom: 30px;
+}
+
+.quote-wrap {
+  overflow: hidden;
+
+  .mobile-ef {
+    float: none;
+    width: 81px;
+    margin: 0 auto;
+    display: none;
+    border: 1px solid grey;
+  }
+
+  blockquote {
+    float: left;
+    width: 70%;
+    margin-top: 100px;
+
+    p {
+      color: @orange;
+    }
+  }
+
+  img {
+    float: right;
+    width: 30%;
+    height: auto;
+  }
+}
+
+.left-up, .right-up {
+  margin-bottom: 0;
+  margin-top: -80px;
+}
+
 .sticky-menu {
   position: fixed;
   top: 100px;
@@ -121,7 +181,7 @@ a, a:hover, a:active {
       height: 32px;
       float: left;
       margin: -5px 14px 0 0;
-      background: transparent url(../img/areas-sprite.png) -99px 0 no-repeat;
+      background: transparent url(../img/areas-sprite-1.png) -99px 0 no-repeat;
       position: relative;
       z-index: -1;
       pointer-events: none;
@@ -198,6 +258,18 @@ a, a:hover, a:active {
       &.active {
         .icon {
           background-position: -132px -33px;  
+        }
+      }
+    }
+
+    &.menu-citat {
+      .icon {
+        background-position: -96px -190px;
+      }
+
+      &.active {
+        .icon {
+          background-position: -127px -190px;  
         }
       }
     }
@@ -293,6 +365,10 @@ a, a:hover, a:active {
     position: relative;
   }
 
+  &.quotes {
+    z-index: 4;
+  }
+
   &.white {
     z-index: 4;
 
@@ -309,8 +385,6 @@ a, a:hover, a:active {
   &.black {
     background: black url(../img/contacts_bg.jpg) 0 0 no-repeat;
     background-size: 100% 100%;
-    margin-top: -20px;
-    padding-top: 20px;
     z-index: 1;
     color: white;
 
@@ -327,16 +401,23 @@ a, a:hover, a:active {
   }
 
   &.careers {
-    background: black url(../img/careers-dev-bg.jpg) 0 0 no-repeat;
+    /*background: black url(../img/careers-dev-bg.jpg) 0 0 no-repeat;
     background-size: 100% 100%;
-    height: 400px;
+    height: 400px;*/
+    margin: 0;
 
     .container {
       background-color: transparent;
+      margin: 0;
+    }
+
+    .chevron {
+      margin: 0;
+      background-color: black;
     }
   }
 
-  &.team {
+  &.team, &.quotes {
     .chevron {
       background-color: transparent;
     }
@@ -357,7 +438,7 @@ a, a:hover, a:active {
     .company-name {
       font-family: Arial, sans-serif;
       .font-size(70);
-      margin-bottom: 35px;
+      margin-bottom: 15px;
       margin-top: 0;
 
       .logo {
@@ -368,14 +449,27 @@ a, a:hover, a:active {
         height: 100px;
         vertical-align: bottom;
       }
+
+      sup {
+        margin-left: 10px;
+        
+        img {
+          width: .6em;
+          .transform(rotate(45deg));
+        }
+      }
     }
 
     .slogan {
-      width: 45%;
+      width: 10%;
       margin: 0 auto;
       font-style: italic;
       .font-size(35);
       font-weight: 300;
+
+      img {
+        max-width: 100%;
+      }
     }
   }
 
@@ -412,6 +506,7 @@ a, a:hover, a:active {
       border-top: 2px solid #333333;
       content: ' ';
       margin: 0 auto 12px auto;
+      border-color: transparent;
     }
   }
 
@@ -759,9 +854,9 @@ a, a:hover, a:active {
         }
       }
 
-      &.menu-areas {
+      &.menu-citat {
         .icon {
-          background-position: -166px -20px;
+          background-position: -166px -126px;
         }
       }
 
@@ -813,9 +908,9 @@ a, a:hover, a:active {
     }
 
     &.careers {
-      background-position: 50% 0;
+      /*background-position: 50% 0;
       background-size: 300% 100%;
-      height: 400px;
+      height: 400px;*/
     }
 
     .section-text-wide {
@@ -825,6 +920,14 @@ a, a:hover, a:active {
 }
 
 @media screen and (max-width: 1200px) {
+  .left-up {
+    margin-top: 0;
+  }
+
+  .right-up {
+    margin-top: -200px;
+  }
+
   .section {
     &.front {
       .container {
@@ -834,7 +937,7 @@ a, a:hover, a:active {
 
       .company-name {
         .font-size(49);
-        margin-bottom: 60px;
+        margin-bottom: 35px;
         margin-top: 0;
 
         .logo {
@@ -845,7 +948,7 @@ a, a:hover, a:active {
       }
 
       .slogan {
-        width: 55%;
+        width: 15%;
         .font-size(28);
       }
     }
@@ -883,9 +986,9 @@ a, a:hover, a:active {
         }
       }
 
-      .slogan {
+      /*.slogan {
         width: 85%;
-      }
+      }*/
     }
 
     &.black {
@@ -952,6 +1055,38 @@ a, a:hover, a:active {
 }
 
 @media screen and (max-width: 767px) {
+  blockquote {
+    p {
+      font-size: 1.5em;
+    }
+
+    footer {
+      font-size: 1.5em;
+    }
+  }
+
+  .quote-wrap {
+
+    blockquote {
+      float: none;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    .ef-quote {
+      display: none;
+    }
+
+    .mobile-ef {
+      display: block;
+    }
+  }
+
+  .left-up, .right-up {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
   .section {
     &.front {
       background-position: 50% 0;
@@ -968,6 +1103,7 @@ a, a:hover, a:active {
       }
 
       .slogan {
+        width: 20%;
         .font-size(21);
       }
 
@@ -978,7 +1114,7 @@ a, a:hover, a:active {
     }
 
     &.careers {
-      height: 350px;
+      /*height: 350px;*/
     }
 
     .section-text-narrow,
@@ -1206,6 +1342,10 @@ a, a:hover, a:active {
 }
 
 @media screen and (max-width: 480px) {
+  blockquote {
+    font-size: 1em;
+  }
+
   .section {
     .text {
       .font-size(14);
@@ -1220,7 +1360,7 @@ a, a:hover, a:active {
     }
 
     &.careers {
-      height: 300px;
+      /*height: 300px;*/
     }
 
     &.front {
@@ -1243,7 +1383,7 @@ a, a:hover, a:active {
       }
 
       .slogan {
-        width: 85%;
+        width: 30%;
         .font-size(17);
       }
     }
@@ -1297,6 +1437,7 @@ a, a:hover, a:active {
     background-color: @orange;
     letter-spacing: 1px;
     font-weight: bold;
+    margin-bottom: 0;
   }
 
   .absolute-center {
@@ -1314,7 +1455,7 @@ a, a:hover, a:active {
     }
 
     &.careers {
-      height: 280px;
+      /*height: 280px;*/
     }
   }
 }
