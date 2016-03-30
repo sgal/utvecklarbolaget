@@ -1,0 +1,9 @@
+{
+  "firebase": "utvecklarbolaget",
+  "public": "build",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
