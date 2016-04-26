@@ -6,6 +6,7 @@ $(document).ready(function() {
   var imgAspectRatio = 2.511, // 1919 x 764
       isNavigating = false,
       disableScroll = false,
+      justLoaded = true,
       History = new StateHistory();
 
   function isOldIE() {
@@ -64,19 +65,14 @@ $(document).ready(function() {
       'border-right-width': sideLength,
       'border-top-width': topLength
     });
-
-    /*$('.section.black, .section.careers').css({
-      'margin-top': -topLength,
-      'padding-top': topLength
-    });*/
   };
 
   function highLightMenuFromHash() {
     var hash = History.getState().substr(1),
-        target = $('.menu-item-wrap.menu-' + hash);
+        target = $('.menu-item.menu-' + hash);
 
     if(!target.hasClass('active')) {
-      $('.menu-item-wrap').removeClass('active');
+      $('.menu-item').removeClass('active');
       target.addClass('active');
     }
   };
@@ -87,11 +83,22 @@ $(document).ready(function() {
     }
     else if(!isNavigating) {
       var currentState = History.getState().substr(1);
+      console.log(currentState);
       $('.section').each(function() {
         if ($(this).offset().top < window.pageYOffset + 200
             && $(this).offset().top + $(this).height() > window.pageYOffset + 200) {
           if(currentState != $(this).attr('id')) {
+            console.log('Not on current');
             History.pushState($(this).attr('id'));
+            if (currentState === 'home') {
+              $('.sticky-menu-desktop').addClass('sticked');
+            }
+            else if ($(this).attr('id') === 'home') {
+              $('.sticky-menu-desktop').removeClass('sticked');
+            }
+          }
+          else if (justLoaded === true && $(this).attr('id') !== 'home') {
+            $('.sticky-menu-desktop').addClass('sticked');
           }
         }
       });
@@ -99,6 +106,8 @@ $(document).ready(function() {
   };
 
   resizeLayout();
+  handleScrollToHighlightMenu();
+  justLoaded = false;
 
   $(window).resize(function() {
     resizeLayout();

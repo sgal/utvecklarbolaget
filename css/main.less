@@ -43,7 +43,7 @@ a, a:hover, a:active {
 }
 
 .we-re-hiring {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   left: 10px;
@@ -91,11 +91,12 @@ a, a:hover, a:active {
 blockquote {
   p {
     font-style: italic;
-    font-size: 1.5em;
+    font-size: 1.7em;
   }
 
   footer {
     font-size: 1.5em;
+    color: @blockquote-color;
   }
 }
 
@@ -113,6 +114,10 @@ blockquote {
 
 .quote {
   margin-bottom: 30px;
+}
+
+.always-visible {
+  display: block!important;
 }
 
 .quote-wrap {
@@ -148,7 +153,86 @@ blockquote {
   margin-top: -80px;
 }
 
+.sticky-menu-desktop {
+  .transition(all 0.5s ease);
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(238, 238, 238, 0);
+  z-index: 9;
+  overflow: hidden;
+
+  .header-wrap {
+    .transition(all 0.5s ease);
+    width: 80%;
+    left: 10%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px dotted white;
+
+    .logo-link {
+      padding: 8px 20px;
+      font-size: 2em;
+      float: left;
+
+      img {
+        vertical-align: baseline;
+        display: inline-block;
+        width: .7em;
+        margin-right: -5px;
+      }
+    }
+
+    .menu-items-box {
+      float: right;
+
+      a {
+        .transition(all 0.5s ease);
+        position: relative;
+        float: right;
+        padding: 20px;
+        color: white;
+        font-size: 1.2em;
+        margin-left: 20px;
+        opacity: 1;
+
+        &.active:after {
+          content: ' ';
+          position: absolute;
+          bottom: 15px;
+          left: 50%;
+          border-top: 1px solid black;
+          display: block;
+          width: 60px;
+          margin-left: -30px;
+        }
+
+        &:hover {
+          opacity: .9;
+        }
+      }
+    }
+  }
+
+  &.sticked {
+    background-color: rgba(238, 238, 238, .7);
+
+    .header-wrap {
+      width: 100%;
+      left: 0;
+      border-bottom: 2px solid #eee;
+
+      a {
+        color: black;
+      }
+    }
+  }
+}
+
 .sticky-menu {
+  display: none;
   position: fixed;
   top: 100px;
   right: -335px;
@@ -764,6 +848,10 @@ blockquote {
     }
   }
 
+  .sticky-menu-desktop {
+    display: none;
+  }
+
   .we-re-hiring {
     width: 80px;
     height: 80px;
@@ -775,6 +863,7 @@ blockquote {
   }
 
   .sticky-menu {
+    display: block;
     top: 0;
     width: @mobile-sticky-menu-width;
     right: -@mobile-sticky-menu-width;
