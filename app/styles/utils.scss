@@ -1,0 +1,61 @@
+$orange: #FF6426;
+$red-hover: #F34120;
+$basefont: 14;
+$grey-bg: #d2d2d2;
+$blockquote-color: #737373;
+$text-color: #3A3C3F;
+$btn-width: 207px;
+$btn-height: 50px;
+$mobile-btn-width: 143px;
+$mobile-btn-height: 35px;
+$mobile-menu-item-width: 50px;
+$mobile-sticky-menu-width: 250px;
+$linkedin-icon-width: 44px;
+$photo-desktop: 166px;
+$photo-mobile: 80px;
+$sp-icon-width: 60px;
+$sp-mobile-icon-width: 40px;
+$cv-mark-width: 70px;
+$timeline-full: #d2d1d1;
+$timeline-free: #0F9D58;
+$scale-height: 9000px;
+
+@mixin font-size($sizePx) {
+  font-size: #{$sizePx/$basefont}em;
+}
+
+@mixin border-radius($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  border-radius:         $radius;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;  
+  -moz-transition:    $transition;
+  -ms-transition:     $transition; 
+  -o-transition:      $transition;
+  transition:         $transition;
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;  
+  -moz-transform:    $transform;
+  -ms-transform:     $transform; 
+  -o-transform:      $transform;
+  transform:         $transform;
+}
+
+@mixin box-shadow($string) {
+  -webkit-box-shadow: $string;
+  -moz-box-shadow:    $string;
+  box-shadow:         $string;
+}
