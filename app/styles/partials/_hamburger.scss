@@ -1,0 +1,43 @@
+@import '../utils';
+
+$hamburger-size: 18px;
+
+.hamburger-menu {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: $hamburger-size;
+  height: $hamburger-size;
+  
+  span {
+    position: absolute;
+    height: 2px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    transition: all .3s ease-in-out;
+    transform: rotate(0);
+
+    &:nth-child(1) {top: 2px;}
+    &:nth-child(2) {top: 8px;}
+    &:nth-child(3) {top: 14px;}
+  }
+
+  .js-openNav & {
+    span {
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(1) {
+        top: 8px;
+        transform: rotate(135deg);
+      }
+      &:nth-child(3) {
+        top: 8px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+}

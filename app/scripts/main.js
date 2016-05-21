@@ -3,6 +3,13 @@ md.mobile() && $('html').addClass('mobile');
 md.phone() && $('html').addClass('phone');
 
 $(document).ready(function() {
+
+  // Toggle hamburger menu
+  $('.hamburger-menu').on('click', function(){
+    $('.header-wrap').toggleClass('js-openNav');
+  });
+
+
   var imgAspectRatio = 2.511, // 1919 x 764
       isNavigating = false,
       disableScroll = false,
@@ -135,7 +142,7 @@ $(document).ready(function() {
             event.preventDefault();
             event.stopPropagation();
             isNavigating = true;
-            scrollPosition = target.offset().top;
+            scrollPosition = target.offset().top - 65;
             
             if(md.phone() && md.userAgent() === 'IE') { //windowsphone
               window.scrollTo(0, scrollPosition);

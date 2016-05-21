@@ -1,61 +1,76 @@
-$orange: #FF6426;
-$red-hover: #F34120;
-$basefont: 14;
-$grey-bg: #d2d2d2;
-$blockquote-color: #737373;
-$text-color: #3A3C3F;
-$btn-width: 207px;
-$btn-height: 50px;
-$mobile-btn-width: 143px;
-$mobile-btn-height: 35px;
-$mobile-menu-item-width: 50px;
-$mobile-sticky-menu-width: 250px;
-$linkedin-icon-width: 44px;
-$photo-desktop: 166px;
-$photo-mobile: 80px;
-$sp-icon-width: 60px;
-$sp-mobile-icon-width: 40px;
-$cv-mark-width: 70px;
-$timeline-full: #d2d1d1;
-$timeline-free: #0F9D58;
-$scale-height: 9000px;
+// COLORS
+//
 
-@mixin font-size($sizePx) {
-  font-size: #{$sizePx/$basefont}em;
-}
+$color-primary:         #FF6426;
+$color-primary-dark:    #f34120;
 
-@mixin border-radius($radius: 5px) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius:    $radius;
-  border-radius:         $radius;
-  border-top-left-radius: $radius;
-  border-top-right-radius: $radius;
-  border-bottom-left-radius: $radius;
-  border-bottom-right-radius: $radius;
+$color-gray-light:      #ccc;
+$color-gray-mute:       #9a9a9a;
 
-  -moz-background-clip:    padding;
-  -webkit-background-clip: padding-box;
-  background-clip:         padding-box;
-}
+$color-text-color:      #333333;
+$color-header-color:    #393939;
 
-@mixin transition($transition) {
-  -webkit-transition: $transition;  
-  -moz-transition:    $transition;
-  -ms-transition:     $transition; 
-  -o-transition:      $transition;
-  transition:         $transition;
-}
+$body-bg:               #fff;
+$body-color:            $color-text-color;
+$link-color:            $color-primary;
+$link-hover-color:      $color-primary-dark;
 
-@mixin transform($transform) {
-  -webkit-transform: $transform;  
-  -moz-transform:    $transform;
-  -ms-transform:     $transform; 
-  -o-transform:      $transform;
-  transform:         $transform;
-}
 
-@mixin box-shadow($string) {
-  -webkit-box-shadow: $string;
-  -moz-box-shadow:    $string;
-  box-shadow:         $string;
-}
+// SPACING
+//
+
+$spacer:                1rem;
+
+$spacing-sm:            ($spacer * .8);
+$spacing-md:            ($spacer * 1.5);
+$spacing-lg:            ($spacer * 3);
+
+
+// SCREEN SIZES
+//
+
+$screen-sm:             768px;
+$screen-md:             992px;
+$screen-lg:             1200px;
+
+$content-width-sm:      100%;
+$content-width-md:      768px;
+$content-width-lg:      768px;
+
+
+// TYPOGRAPHY
+//
+
+$font-family-base:      "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+$font-size-root:        16px;
+
+$font-size-base:        1rem;
+$font-size-lg:          ($font-size-base * 1.25);
+$font-size-sm:          ($font-size-base * .85);
+$font-size-xs:          ($font-size-base * .75);
+
+$line-height:           1.5;
+$line-height-lg:        (4 / 3);
+$line-height-sm:        $line-height;
+
+
+// BUTTONS
+//
+
+$btn-padding-x:         1rem;
+$btn-padding-y:         .375rem;
+
+
+// FORMS
+//
+
+$input-padding-x:       $btn-padding-x;
+$input-padding-y:       $btn-padding-y;
+$input-bg:              #fff;
+$input-border-color:    $color-gray-light;
+
+
+// Nav
+$nav-height:            40px;
+$nav-height-lg:         65px;

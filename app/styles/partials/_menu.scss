@@ -1,0 +1,163 @@
+@import '../utils';
+
+$nav-bg-init:           #000;
+$nav-bg-sticked:        #fafafa;
+
+.sticky-menu {
+  display: none;
+}
+
+.sticky-menu-desktop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background-color: rgba($nav-bg-init, .8);
+  z-index: 1000;
+  height: $nav-height;
+  transition: background .2s ease-in-out;
+
+  @media (min-width: $screen-sm) {
+    height: $nav-height-lg;
+    &.sticked {
+      background-color: rgba($nav-bg-sticked, .9);
+      .header-wrap {
+        max-width: $screen-sm + 50px;
+      }
+      .logo-link svg .txt {
+        fill: black;
+      }
+      .menu-items-box .menu-item {
+        color: black;
+        &:after {
+          background-color: black;
+        }
+      }
+    }
+  }
+
+  .header-wrap {
+    display: flex;
+    align-items: center;
+    margin: 0 $spacing-sm;
+    transition: all .2s ease-in-out;
+    @media (min-width: $screen-sm) {
+      max-width: $screen-sm;
+      margin: 0 auto;
+    }
+
+    // Nav toggle
+    &.js-openNav {
+      .menu-items-box {
+        opacity: 1;
+        top: $nav-height;
+        transform: translateY(0);
+
+        @media (min-width: $screen-sm) {
+          top: auto;
+        }
+      }
+    }
+  }
+
+  // Logotype
+  .logo-link {
+    display: block;
+    width: ($nav-height - 10);
+    height: ($nav-height - 10);
+    margin: 5px 0;
+    background: transparent url('../../images/utvecklarbolaget_U.svg') center center no-repeat;
+    background-size: contain;
+    svg {
+      display: none;
+    }
+
+    @media (min-width: $screen-sm) {
+      background-image: none;
+      height: ($nav-height-lg - 10);
+      width: 230px;
+      svg {
+        display: block;
+        width: 230px;
+        height: ($nav-height-lg - 10);
+        .txt {
+          transition: all .2s ease-in-out;
+          fill: #fff;
+        }
+      }
+    }
+  }
+
+  // Hamburgermenu
+  .hamburger-menu-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media (min-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  // Navigation
+  .menu-items-box {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    background-color: rgba($nav-bg-init, .8);
+    transition: all .1s ease-in-out;
+    opacity: .6;
+    transform: translateY(-100%);
+    z-index: -1;
+
+    @media (min-width: $screen-sm) {
+      position: relative;
+      text-align: right;
+      transform: translateY(0);
+      background-color: transparent;
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .menu-item {
+      position: relative;
+      color: white;
+      display: block;
+      margin: $spacing-sm 0;
+      padding: 0 $spacing-sm;
+      transition: all .1s ease-in-out;
+
+      @media (min-width: $screen-sm) {
+        display: inline-block;
+        padding: 0;
+        margin: $spacing-sm;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all .2s ease-in-out;
+      }
+
+      &.active,
+      &:hover {
+        &:after {
+          opacity: 1;
+          transform: translateY(0)
+        }
+      }
+    }
+  }
+}
