@@ -6,13 +6,39 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
+gulp.task('calculator', ['calculatorstyles'], function() {
+  return gulp.src('app/calculator/*.html')
+    .pipe($.inject(gulp.src('.tmp/calculatorstyles/*.css'), {
+      starttag: '/* inject:calculatorstyle */',
+      endtag: '/* endinject */',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string 
+        return file.contents.toString('utf8');
+      }
+    }))
+    .pipe($.inlineCss({removeStyleTags: true}))
+    .pipe($.inlineSource({compress: false}))
+    .pipe(gulp.dest('.tmp/calculator'));
+});
+
+gulp.task('calculatorstyles', function () {
+  return gulp.src('app/calculator/main.scss')
+    .pipe($.plumber())
+    .pipe($.sass({
+      style: 'expanded'
+    }))
+    .pipe($.autoprefixer({browsers: ['last 2 versions']}))
+    .pipe(gulp.dest('.tmp/calculatorstyles'));
+});
+
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
     .pipe($.plumber())
     .pipe($.sass({
       style: 'expanded'
     }))
-    .pipe($.autoprefixer({browsers: ['last 1 version']}))
+    .pipe($.autoprefixer({browsers: ['last 2 versions']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
 
@@ -23,7 +49,7 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['styles'], function () {
+gulp.task('html', ['styles', 'calculator'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
@@ -32,6 +58,14 @@ gulp.task('html', ['styles'], function () {
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
+    .pipe($.inject(gulp.src('.tmp/calculator/index.html'), {
+      starttag: '<!-- inject:calculator -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string 
+        return file.contents.toString('utf8');
+      }
+    }))
     .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
@@ -65,7 +99,7 @@ gulp.task('extras', function () {
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles'], function () {
+gulp.task('serve', ['styles', 'calculator'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
@@ -77,6 +111,7 @@ gulp.task('serve', ['styles'], function () {
 
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['app/calculator/**/*.{scss,css}'], ['calculator', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
 });
@@ -112,12 +147,13 @@ gulp.task('watch', ['connect'], function () {
   // watch for changes
   gulp.watch([
     'app/*.html',
+    'app/calculator/*.html',
     '.tmp/styles/**/*.css',
     'app/scripts/**/*.js',
     'app/images/**/*'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/**/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
