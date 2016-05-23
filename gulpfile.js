@@ -19,7 +19,8 @@ gulp.task('calculator', ['calculatorstyles'], function() {
     }))
     .pipe($.inlineCss({removeStyleTags: true}))
     .pipe($.inlineSource({compress: false}))
-    .pipe(gulp.dest('.tmp/calculator'));
+    .pipe(gulp.dest('.tmp/calculator'))
+    .pipe(gulp.dest('dist/calculator'));
 });
 
 gulp.task('calculatorstyles', function () {
