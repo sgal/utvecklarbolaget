@@ -1,24 +1,75 @@
 @import '../utils';
 
+* {
+  box-sizing: border-box;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
 
 a {
   text-decoration: none;
 }
 
+label {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  font-size: $font-size-sm;
+  margin-top: ($spacing-sm/2);
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: ($spacing-sm / 2) $spacing-sm;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $color-text-color;
+  background-color: #fff;
+  border: 1px solid $color-gray-mute;
+  border-radius: .25rem;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  display: inline-block;
+  padding: ($spacing-sm / 2) $spacing-sm;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid $color-primary-dark;
+  border-radius: .25rem;
+  background-color: $color-primary;
+  color: white;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  display: none!important;
+}
+
 
 // Base structure
 
-.content-wrap {
-
-}
-
 .section {
   max-width: $content-width-sm;
-  margin: 0 $spacing-sm $spacing-lg $spacing-sm;
+  margin: 0 $spacing-sm;
 
   @media (min-width: $screen-sm) {
     max-width: $content-width-md;
-    margin: 0 auto $spacing-lg auto;
+    margin: 0 auto;
   }
 
   @media (min-width: $screen-md) {
@@ -133,4 +184,63 @@ $quotation-mark-size: 2rem;
 .footer {
   background-color: $color-text-color;
   color: #fff;
+
+  .copy {
+    text-align: center;
+    font-size: 70%;
+    color: $color-gray-mute;
+    padding-bottom: $spacing-lg;
+  }
+}
+
+
+.hello {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+    text-align: left;
+  }
+  align-items: center;
+  padding: $spacing-md 0;
+  .face {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  .data {
+    flex: 1;
+    padding: $spacing-sm;
+    font-size: 80%;
+    h2 {
+      margin: 0;
+      line-height: 1;
+      .data-name {
+        display: block;
+        line-height: 1em;
+      }
+      .small {
+        display: inline-block;
+        font-size: .9rem;
+        font-weight: normal;
+        line-height: 1em;
+      }
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+      &:hover {
+        color: #eee;
+        text-decoration: none;
+      }
+    }
+  }
+
+  address {
+    font-style: normal;
+  }
 }

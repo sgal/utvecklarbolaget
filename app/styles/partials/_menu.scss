@@ -101,22 +101,27 @@ $nav-bg-sticked:        #fafafa;
 
   // Navigation
   .menu-items-box {
-    position: absolute;
-    top: 0; left: 0;
+    position: fixed;
+    top: $nav-height; left: 0;
     width: 100%;
+    height: 100%;
+    padding-bottom: $nav-height;
     background-color: rgba($nav-bg-init, .8);
     transition: all .1s ease-in-out;
     opacity: .6;
-    transform: translateY(-100%);
-    z-index: -1;
+    transform: translateX(-100%);
+    overflow: auto;
 
     @media (min-width: $screen-sm) {
       position: relative;
+      top: 0;
+      padding-bottom: 0;
       text-align: right;
-      transform: translateY(0);
+      transform: translateX(0);
       background-color: transparent;
       opacity: 1;
       z-index: 1;
+      overflow: visible;
     }
 
     .menu-item {
@@ -159,5 +164,40 @@ $nav-bg-sticked:        #fafafa;
         }
       }
     }
+
+    .menu-contact {
+      display: none;
+      @media (min-width: $screen-sm) {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+
+// Contact form
+.contact-form {
+  border-top: 2px solid rgba(255,255,255,.8);
+  padding: 0 $spacing-sm $spacing-md $spacing-sm;
+
+  .contact-form-header {
+    color: #fff;
+    margin: $spacing-sm 0 0 0;
+    font-weight: normal;
+  }
+
+  .contact-form-send {
+    text-align: right;
+    margin-top: $spacing-sm;
+  }
+
+  @media (min-width: $screen-sm) {
+    position: fixed;
+    top: $nav-height-lg;
+    right: 0;
+    background-color: rgba(0,0,0,.8);
+    border-top: 0;
+    min-width: 250px;
+    max-width: 100%;
   }
 }
