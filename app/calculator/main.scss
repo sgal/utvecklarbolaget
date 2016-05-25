@@ -1,4 +1,102 @@
-.calculator-section {
-  background-color: green;
-  color: white;
+@import 'inputrange';
+
+$counter-digit-height: 60px;
+
+.calculator {
+  margin-bottom: 10px;
+
+  label {
+    color: initial;
+
+    &.checkboxed {
+      text-indent: -20px;
+      padding-left: 20px;
+    }
+
+    [type=checkbox] {
+      margin-right: 4px;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  input {
+    display: initial;
+    width: auto;
+    outline: none;
+  }
+
+  .range-control {
+    display: flex;
+
+    .range {
+      flex-grow: 10;
+      margin-right: 15px;
+      border-width: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .range-value {
+      flex-grow: 0;
+      width: 75px;
+    }
+  }
+
+  .counter {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .numbers-wrap {
+    list-style: none;
+    padding: 0;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+
+    .numbers {
+      width: 50px;
+      height: 65px;
+      background-color: #333;
+      color: #fff;
+      border-radius: 6px;
+      margin: 0 3px;
+      font: normal 46px/1 monaco;
+      padding-top: 10px;
+      overflow: hidden;
+
+      &:nth-child(3) {
+        margin-right: 25px;
+      }
+    }
+
+    .unit {
+      font: normal 1.5rem/1 monaco;
+    }
+
+    .n {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: all .3s ease-in-out;
+
+      .i {
+        height: $counter-digit-height;
+        text-align: center;
+      }
+
+      @for $i from 0 through 9 {
+        &.n-#{$i} {
+          transform: translateY(-($i * $counter-digit-height));
+          animation-delay: ($i * .1)s;
+        }
+      }
+    }
+  }
 }

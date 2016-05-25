@@ -17,8 +17,8 @@ gulp.task('calculator', ['calculatorstyles'], function() {
         return file.contents.toString('utf8');
       }
     }))
-    .pipe($.inlineCss({removeStyleTags: true}))
-    .pipe($.inlineSource({compress: false}))
+    // .pipe($.inlineCss({removeStyleTags: false, applyStyleTags: true}))
+    .pipe($.inlineSource({compress: true}))
     .pipe(gulp.dest('.tmp/calculator'))
     .pipe(gulp.dest('dist/calculator'));
 });
@@ -54,6 +54,26 @@ gulp.task('html', ['styles', 'calculator'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
+    .pipe($.inject(gulp.src('.tmp/calculator/index.html'), {
+      starttag: '<!-- inject:calculator -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string 
+        return file.contents.toString('utf8');
+      }
+    }))
+    .pipe(assets)
+    .pipe(assets.restore())
+    .pipe($.useref())
+    //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('.tmp'))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('html:dist', ['styles', 'calculator'], function () {
+  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+
+  return gulp.src('app/*.html')
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
@@ -68,6 +88,7 @@ gulp.task('html', ['styles', 'calculator'], function () {
       }
     }))
     //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('.tmp'))
     .pipe(gulp.dest('dist'));
 });
 
@@ -77,6 +98,7 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     }))
+    .pipe(gulp.dest('.tmp/images'))
     .pipe(gulp.dest('dist/images'));
 });
 
@@ -84,6 +106,7 @@ gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
     .pipe($.flatten())
+    .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -94,27 +117,29 @@ gulp.task('extras', function () {
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'));
+  })
+  .pipe(gulp.dest('.tmp'))
+  .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'calculator'], function () {
+gulp.task('serve', ['html', 'images', 'extras'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app']
+    server: ['.tmp'] //, 'app']
   });
 
-  gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/**/*.html'], ['html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/calculator/**/*.{scss,css}'], ['calculator', reload]);
+  gulp.watch(['app/calculator/**/*.*'], ['html', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['app/images/**/*'], ['images', reload]);
 });
 
 // Build and serve the output from the dist build
@@ -145,20 +170,24 @@ gulp.task('wiredep', function () {
 gulp.task('watch', ['connect'], function () {
   $.livereload.listen();
 
+  // 'app/*.html',
+  // '.tmp/styles/**/*.css',
+  // 'app/scripts/**/*.js',
+  // 'app/images/**/*'
+
   // watch for changes
   gulp.watch([
-    'app/*.html',
-    'app/calculator/*.html',
+    '.tmp/*.html',
     '.tmp/styles/**/*.css',
-    'app/scripts/**/*.js',
-    'app/images/**/*'
+    '.tmp/scripts/**/*.js',
+    '.tmp/images/**/*'
   ]).on('change', $.livereload.changed);
 
   gulp.watch('app/**/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['html', 'images', 'extras'], function () {
+gulp.task('build', ['html:dist', 'images', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 

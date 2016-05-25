@@ -90,12 +90,10 @@ $(document).ready(function() {
     }
     else if(!isNavigating) {
       var currentState = History.getState().substr(1);
-      console.log(currentState);
       $('.section').each(function() {
         if ($(this).offset().top < window.pageYOffset + 200 &&
             $(this).offset().top + $(this).height() > window.pageYOffset + 200) {
           if(currentState != $(this).attr('id')) {
-            console.log('Not on current');
             History.pushState($(this).attr('id'));
             if (currentState === 'home') {
               $('.sticky-menu-desktop').addClass('sticked');
