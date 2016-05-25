@@ -192,6 +192,7 @@ $nav-bg-sticked:        #fafafa;
   }
 
   @media (min-width: $screen-sm) {
+    display: none; // Hide this for now
     position: fixed;
     top: $nav-height-lg;
     right: 0;
