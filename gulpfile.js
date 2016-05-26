@@ -6,13 +6,40 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
+gulp.task('calculator', ['calculatorstyles'], function() {
+  return gulp.src('app/calculator/*.html')
+    .pipe($.inject(gulp.src('.tmp/calculatorstyles/*.css'), {
+      starttag: '/* inject:calculatorstyle */',
+      endtag: '/* endinject */',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string 
+        return file.contents.toString('utf8');
+      }
+    }))
+    // .pipe($.inlineCss({removeStyleTags: false, applyStyleTags: true}))
+    .pipe($.inlineSource({compress: true}))
+    .pipe(gulp.dest('.tmp/calculator'))
+    .pipe(gulp.dest('dist/calculator'));
+});
+
+gulp.task('calculatorstyles', function () {
+  return gulp.src('app/calculator/main.scss')
+    .pipe($.plumber())
+    .pipe($.sass({
+      style: 'expanded'
+    }))
+    .pipe($.autoprefixer({browsers: ['last 2 versions']}))
+    .pipe(gulp.dest('.tmp/calculatorstyles'));
+});
+
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
     .pipe($.plumber())
     .pipe($.sass({
       style: 'expanded'
     }))
-    .pipe($.autoprefixer({browsers: ['last 1 version']}))
+    .pipe($.autoprefixer({browsers: ['last 2 versions']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
 
@@ -23,7 +50,26 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['styles'], function () {
+gulp.task('html', ['styles', 'calculator'], function () {
+  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+
+  return gulp.src('app/*.html')
+    .pipe($.inject(gulp.src('.tmp/calculator/index.html'), {
+      starttag: '<!-- inject:calculator -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string 
+        return file.contents.toString('utf8');
+      }
+    }))
+    .pipe(assets)
+    .pipe(assets.restore())
+    .pipe($.useref())
+    //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('.tmp'))
+});
+
+gulp.task('html:dist', ['styles', 'calculator'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
@@ -32,7 +78,16 @@ gulp.task('html', ['styles'], function () {
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
+    .pipe($.inject(gulp.src('.tmp/calculator/index.html'), {
+      starttag: '<!-- inject:calculator -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string 
+        return file.contents.toString('utf8');
+      }
+    }))
     //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('.tmp'))
     .pipe(gulp.dest('dist'));
 });
 
@@ -42,6 +97,7 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     }))
+    .pipe(gulp.dest('.tmp/images'))
     .pipe(gulp.dest('dist/images'));
 });
 
@@ -49,6 +105,7 @@ gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
     .pipe($.flatten())
+    .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -59,26 +116,29 @@ gulp.task('extras', function () {
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'));
+  })
+  .pipe(gulp.dest('.tmp'))
+  .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles'], function () {
+gulp.task('serve', ['html', 'images', 'extras'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app']
+    server: ['.tmp']
   });
 
-  gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/**/*.html'], ['html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['app/calculator/**/*.*'], ['html', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['app/images/**/*'], ['images', reload]);
 });
 
 // Build and serve the output from the dist build
@@ -111,17 +171,17 @@ gulp.task('watch', ['connect'], function () {
 
   // watch for changes
   gulp.watch([
-    'app/*.html',
+    '.tmp/*.html',
     '.tmp/styles/**/*.css',
-    'app/scripts/**/*.js',
-    'app/images/**/*'
+    '.tmp/scripts/**/*.js',
+    '.tmp/images/**/*'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/styles/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['html', 'images', 'extras'], function () {
+gulp.task('build', ['html:dist', 'images', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
