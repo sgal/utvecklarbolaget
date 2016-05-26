@@ -67,7 +67,6 @@ gulp.task('html', ['styles', 'calculator'], function () {
     .pipe($.useref())
     //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('.tmp'))
-    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('html:dist', ['styles', 'calculator'], function () {
@@ -132,7 +131,7 @@ gulp.task('serve', ['html', 'images', 'extras'], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp'] //, 'app']
+    server: ['.tmp']
   });
 
   gulp.watch(['app/**/*.html'], ['html', reload]);
@@ -178,7 +177,7 @@ gulp.task('watch', ['connect'], function () {
     '.tmp/images/**/*'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/**/*.scss', ['styles']);
+  gulp.watch('app/styles/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
 

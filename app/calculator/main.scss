@@ -1,9 +1,42 @@
-@import 'inputrange';
-
 $counter-digit-height: 60px;
+$counter-width-sm: 30px;
+$counter-width-lg: 50px;
+$counter-height-sm: 55px;
+$counter-height-lg: 65px;
+$counter-font-size-sm: 36px;
+$counter-font-size-lg: 46px;
 
 .calculator {
+  @import '../styles/utils';
+  @import '../styles/partials/normalize';
+  @import '../styles/partials/controls';
+
+  @import 'inputrange';
+
+  * {
+    box-sizing: border-box;
+  }
+
+  font: normal #{$font-size-base}/#{$line-height} $font-family-base;
   margin-bottom: 10px;
+  max-width: $content-width-sm;
+  margin: 0 $spacing-sm;
+
+  @media (min-width: $screen-sm) {
+    max-width: $content-width-md;
+    margin: 0 auto;
+  }
+
+  @media (min-width: $screen-md) {
+    max-width: $content-width-lg;
+  }
+
+  .section-title {
+    text-align: center;
+    font-weight: normal;
+    font-size: 2rem;
+    margin: $spacing-sm 0;
+  }
 
   label {
     color: initial;
@@ -16,7 +49,6 @@ $counter-digit-height: 60px;
     [type=checkbox] {
       margin-right: 4px;
       position: relative;
-      top: 3px;
     }
   }
 
@@ -43,6 +75,10 @@ $counter-digit-height: 60px;
     }
   }
 
+  .checkbox-control {
+    margin: 15px 0;
+  }
+
   .counter {
     display: flex;
     justify-content: center;
@@ -52,20 +88,30 @@ $counter-digit-height: 60px;
   .numbers-wrap {
     list-style: none;
     padding: 0;
-    margin: 1rem;
+    margin: 1rem 0;
     display: flex;
     align-items: center;
 
     .numbers {
-      width: 50px;
-      height: 65px;
+
+      @media (max-width: $screen-sm) {
+        width: $counter-width-sm;
+        height: $counter-height-sm;
+        font: normal $counter-font-size-sm/1 Arial;
+      }
+
+      @media (min-width: $screen-md) {
+        width: $counter-width-lg;
+        height: $counter-height-lg;
+        font: normal $counter-font-size-lg/1 Arial;
+      }
+
       background-color: #333;
       color: #fff;
       border-radius: 6px;
       margin: 0 3px;
-      font: normal 46px/1 monaco;
-      padding-top: 10px;
       overflow: hidden;
+      padding-top: 7px;
 
       &:nth-child(3) {
         margin-right: 25px;
@@ -73,7 +119,13 @@ $counter-digit-height: 60px;
     }
 
     .unit {
-      font: normal 1.5rem/1 monaco;
+      @media (max-width: $screen-sm) {
+        font: normal 1rem/1 monaco;
+      }
+
+      @media (min-width: $screen-md) {
+        font: normal 1.5rem/1 monaco;
+      }
     }
 
     .n {

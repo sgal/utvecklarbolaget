@@ -1,12 +1,14 @@
 (function(w, d) {
   'use strict';
 
+  var checkboxValue = 20;
+
   var values = {
     js: 4,
     consult: 0,
     frameworks: 0,
     professional: false,
-    node: false
+    nodejs: false
   };
 
   function Range(selector, onChange) {
@@ -21,25 +23,52 @@
       };
     }
 
+    function onMouseStart() {
+      changeListener(range, input)();
+      range.addEventListener('mousemove', changeListener(range, input));
+    }
+
+    function onTouchStart() {
+      changeListener(range, input)();
+      range.addEventListener('touchmove', changeListener(range, input));
+    }
+
+    function onMouseEnd() {
+      range.removeEventListener('mousemove', changeListener(range, input));
+    }
+
+    function onTouchEnd() {
+      range.removeEventListener('touchmove', changeListener(range, input));
+    }
+
     range.addEventListener('change', function() {
       onChange(range.value);
     }, false);
 
-    range.addEventListener('mousedown', function() {
-      changeListener(range, input)();
-      range.addEventListener('mousemove', changeListener(range, input));
-    }, false);
+    range.addEventListener('mousedown', onMouseStart, false);
+    range.addEventListener('touchstart', onTouchStart, false);
 
-    range.addEventListener('mouseup', function() {
-      range.removeEventListener('mousemove', changeListener(range, input));
-    }, false);
+    range.addEventListener('mouseup', onMouseEnd, false);
+    range.addEventListener('touchend', onTouchEnd, false);
+    
 
     input.addEventListener('input', function() {
       changeListener(input, range)();
       onChange(input.value);
     }, false);
+  }
 
-    this.range = range;
+  function Checkbox(selector, onChange) {
+    var checkbox = document.getElementById(selector);
+    var label = document.getElementById(selector + '-value');
+
+    var updateValue = function() {
+      var value = checkbox.checked ? checkboxValue : 0;
+      onChange(value);
+    };
+
+    label.addEventListener('click', updateValue, false);
+    checkbox.addEventListener('click', updateValue, false);
   }
 
   function calculateBruttoSalary(jsYears, consultYears, frameworksNumber, isProfessional, hasNode) {
@@ -62,11 +91,11 @@
 
     // professional
     if (isProfessional && jsYears > 4) {
-      hourlyRate += 20;
+      hourlyRate += checkboxValue;
     }
 
     if (hasNode) {
-      hourlyRate += 20;
+      hourlyRate += checkboxValue;
     }
 
     var workingDays = 20;
@@ -83,7 +112,7 @@
   }
 
   function updateCounter() {
-    var bruttoSalary = calculateBruttoSalary(values.js, values.consult, values.frameworks, values.professional, values.node);
+    var bruttoSalary = calculateBruttoSalary(values.js, values.consult, values.frameworks, values.professional, values.nodejs);
 
     var salaryArr = Math.round(bruttoSalary).toString().split('');
 
@@ -103,4 +132,6 @@
   var js = new Range('js-years', update('js'));
   var consult = new Range('consult-years', update('consult'));
   var frameworks = new Range('frameworks-number', update('frameworks'));
+  var professional = new Checkbox('professional', update('professional'));
+  var nodejs = new Checkbox('nodejs', update('nodejs'));
 })(window, document);
