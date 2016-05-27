@@ -10,11 +10,11 @@
 
 .section {
   max-width: $content-width-sm;
-  margin: 0 $spacing-sm;
+  margin: 0 $spacing-sm $section-margin-bottom-sm;
 
   @media (min-width: $screen-sm) {
     max-width: $content-width-md;
-    margin: 0 auto;
+    margin: 0 auto $section-margin-bottom-lg;
   }
 
   @media (min-width: $screen-md) {
@@ -50,6 +50,10 @@
     font-size: 2rem;
     margin: $spacing-sm 0;
   }
+
+  p {
+    margin: 1.5em 0;
+  }
 }
 
 
@@ -75,8 +79,12 @@ $quotation-mark-size: 2rem;
 
 .quote {
   position: relative;
-  margin: $spacing-sm 0;
+  margin: $spacing-sm auto;
   padding: $spacing-sm ($quotation-mark-size + .5);
+
+  @media (min-width: $screen-sm) {
+    width: 70%;
+  }
 
   &:before,
   &:after {
@@ -102,10 +110,7 @@ $quotation-mark-size: 2rem;
     font-style: italic;
     color: $color-header-color;
     display: block;
-    @media (min-width: $screen-sm) {
-      width: 70%;
-      margin: 0 auto;
-    }
+    
     &:before,
     &:after {
       content: "";
@@ -114,6 +119,7 @@ $quotation-mark-size: 2rem;
 
   footer {
     text-align: right;
+
     cite {
       display: block;
       color: $color-gray-mute;
@@ -129,6 +135,10 @@ $quotation-mark-size: 2rem;
 .footer {
   background-color: $color-text-color;
   color: #fff;
+
+  .section {
+    margin-bottom: 0;
+  }
 
   .copy {
     text-align: center;
@@ -177,7 +187,7 @@ $quotation-mark-size: 2rem;
 
     a {
       color: #fff;
-      text-decoration: underline;
+      text-decoration: none;
       &:hover {
         color: #eee;
         text-decoration: none;

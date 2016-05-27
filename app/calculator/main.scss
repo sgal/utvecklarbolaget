@@ -20,11 +20,11 @@ $counter-font-size-lg: 46px;
   font: normal #{$font-size-base}/#{$line-height} $font-family-base;
   margin-bottom: 10px;
   max-width: $content-width-sm;
-  margin: 0 $spacing-sm;
+  margin: 0 $spacing-sm $section-margin-bottom-lg;
 
   @media (min-width: $screen-sm) {
     max-width: $content-width-md;
-    margin: 0 auto;
+    margin: 0 auto $section-margin-bottom-sm;
   }
 
   @media (min-width: $screen-md) {
@@ -100,7 +100,7 @@ $counter-font-size-lg: 46px;
         font: normal $counter-font-size-sm/1 Arial;
       }
 
-      @media (min-width: $screen-md) {
+      @media (min-width: $screen-sm) {
         width: $counter-width-lg;
         height: $counter-height-lg;
         font: normal $counter-font-size-lg/1 Arial;

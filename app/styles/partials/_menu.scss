@@ -21,7 +21,7 @@ $nav-bg-sticked:        #fafafa;
     &.sticked {
       background-color: rgba($nav-bg-sticked, .9);
       .header-wrap {
-        max-width: $screen-sm + 50px;
+        max-width: 90%;/*$screen-sm + 50px*/;
       }
       .logo-link svg .txt {
         fill: black;
@@ -142,7 +142,7 @@ $nav-bg-sticked:        #fafafa;
         }
       }
       
-      &:after {
+      /*&:after {
         content: "";
         display: block;
         position: absolute;
@@ -162,7 +162,7 @@ $nav-bg-sticked:        #fafafa;
           opacity: 1;
           transform: translateY(0)
         }
-      }
+      } */
     }
 
     .menu-contact {
