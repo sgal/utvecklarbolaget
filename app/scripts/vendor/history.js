@@ -7,6 +7,7 @@ var StateHistory = function() {
       };
   return {
     pushState: function(state) {
+      if (!state) return;
       state = state.indexOf('#') == 0 ? state : '#' + state;
       if(history.pushState) {
         history.pushState(state, state, state);

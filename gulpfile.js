@@ -50,7 +50,7 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['styles', 'calculator'], function () {
+gulp.task('html', ['clearscripts', 'styles', 'calculator'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
@@ -66,7 +66,7 @@ gulp.task('html', ['styles', 'calculator'], function () {
     .pipe(assets.restore())
     .pipe($.useref())
     //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
-    .pipe(gulp.dest('.tmp'))
+    .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('html:dist', ['styles', 'calculator'], function () {
@@ -122,6 +122,7 @@ gulp.task('extras', function () {
 });
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+gulp.task('clearscripts', require('del').bind(null, ['.tmp/scripts']));
 
 // Watch Files For Changes & Reload
 gulp.task('serve', ['html', 'images', 'extras'], function () {
@@ -137,7 +138,7 @@ gulp.task('serve', ['html', 'images', 'extras'], function () {
   gulp.watch(['app/**/*.html'], ['html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/calculator/**/*.*'], ['html', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['html']);
+  gulp.watch(['app/scripts/**/*.js'], ['html', reload]);
   gulp.watch(['app/images/**/*'], ['images', reload]);
 });
 
