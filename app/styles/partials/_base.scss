@@ -10,11 +10,11 @@
 
 .section {
   max-width: $content-width-sm;
-  margin: 0 $spacing-sm $section-margin-bottom-sm;
+  padding: 0 $spacing-sm $section-margin-bottom-sm;
 
   @media (min-width: $screen-sm) {
     max-width: $content-width-md;
-    margin: 0 auto $section-margin-bottom-lg;
+    padding: 0 auto $section-margin-bottom-lg;
   }
 
   @media (min-width: $screen-md) {
@@ -28,6 +28,7 @@
     justify-content: center;
     max-width: 100%;
     margin: 0;
+    padding: 0;
     text-align: center;
     background-image: linear-gradient(to bottom, $color-primary, $color-primary-dark);
 
@@ -48,11 +49,11 @@
     text-align: center;
     font-weight: normal;
     font-size: 2rem;
-    margin: $spacing-sm 0;
+    margin: $spacing-sm 0 0;
   }
 
   p {
-    margin: 1.5em 0;
+    margin: 0 0 1.5em 0;
   }
 }
 
@@ -153,10 +154,6 @@ $quotation-mark-size: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  @media (min-width: $screen-sm) {
-    flex-direction: row;
-    text-align: left;
-  }
   align-items: center;
   padding: $spacing-md 0;
   .face {

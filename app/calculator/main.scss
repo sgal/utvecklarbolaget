@@ -1,9 +1,9 @@
 $counter-digit-height: 60px;
-$counter-width-sm: 30px;
+$counter-width-sm: 38px;
 $counter-width-lg: 50px;
-$counter-height-sm: 55px;
+$counter-height-sm: 65px;
 $counter-height-lg: 65px;
-$counter-font-size-sm: 36px;
+$counter-font-size-sm: 46px;
 $counter-font-size-lg: 46px;
 
 .calculator {
@@ -18,9 +18,8 @@ $counter-font-size-lg: 46px;
   }
 
   font: normal #{$font-size-base}/#{$line-height} $font-family-base;
-  margin-bottom: 10px;
   max-width: $content-width-sm;
-  margin: 0 $spacing-sm $section-margin-bottom-lg;
+  padding: 0 $spacing-sm $section-margin-bottom-lg;
 
   @media (min-width: $screen-sm) {
     max-width: $content-width-md;
@@ -40,6 +39,13 @@ $counter-font-size-lg: 46px;
 
   label {
     color: initial;
+    display: block;
+    text-align: center;
+
+    @media (min-width: $screen-sm) {
+      display: inline-block;
+      text-align: left;
+    }
 
     &.checkboxed {
       text-indent: -20px;
@@ -60,6 +66,10 @@ $counter-font-size-lg: 46px;
 
   .range-control {
     display: flex;
+    margin: 0 $spacing-md;
+    @media (min-width: $screen-sm) {
+      margin: 0;
+    }
 
     .range {
       flex-grow: 10;
@@ -77,6 +87,10 @@ $counter-font-size-lg: 46px;
 
   .checkbox-control {
     margin: 15px 0;
+
+    label {
+      text-align: left;
+    }
   }
 
   .counter {
@@ -114,17 +128,20 @@ $counter-font-size-lg: 46px;
       padding-top: 7px;
 
       &:nth-child(3) {
-        margin-right: 25px;
+        margin-right: 15px;
+        @media (min-width: $screen-sm) {
+          margin-right: 25px;
+        }
       }
     }
 
     .unit {
       @media (max-width: $screen-sm) {
-        font: normal 1rem/1 monaco;
+        font-size: .7rem;
       }
 
       @media (min-width: $screen-md) {
-        font: normal 1.5rem/1 monaco;
+        font-size: 1.5rem;
       }
     }
 
