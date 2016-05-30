@@ -5,7 +5,8 @@ md.phone() && $('html').addClass('phone');
 $(document).ready(function() {
 
   // Toggle hamburger menu
-  $('.hamburger-menu').on('click', function(){
+  $('.hamburger-menu').on('click', function(event){
+    event.preventDefault();
     $('.header-wrap').toggleClass('js-openNav');
   });
 
