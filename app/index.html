@@ -195,26 +195,26 @@
         </div>
         <nav class="menu-items-box">
           <a href="#about" class="menu-item menu-about">om oss</a>
-          <a href="#citat" class="menu-item menu-citat">v&aring;ra kunder</a>
+          <a href="#customers" class="menu-item menu-customers">v&aring;ra kunder</a>
           <a href="#careers" class="menu-item menu-careers">arbeta hos oss</a>
           <a href="#calculator" class="menu-item menu-calculator">l&ouml;nesnurra</a>
           <a href="#contact" class="menu-item menu-contact">kontakt</a>
           <div class="contact-form">
             <h2 class="contact-form-header">Kontakt</h2>
-            <form>
+            <form id="contact-form">
               <fieldset class="form-field">
                 <label for="name">Namn</label>
-                <input type="text" id="name" name="name" />
+                <input type="text" id="name" name="name" value="" placeholder="Namn" required/>
               </fieldset>
 
               <fieldset class="form-field">
                 <label for="email">E-post</label>
-                <input type="email" id="email" name="email" />
+                <input type="email" id="email" name="email" value="" placeholder="E-post" required/>
               </fieldset>
 
               <fieldset class="form-field">
                 <label for="msg">Meddelande</label>
-                <textarea id="msg" name="message"></textarea>
+                <textarea id="msg" name="message" placeholder="Meddelande" required></textarea>
               </fieldset>
               <div class="contact-form-send">
                 <button type="submit" id="send-contact-details">Skicka</button>
@@ -242,7 +242,7 @@
         </blockquote>
       </section>
 
-      <section id="citat" class="section white">
+      <section id="customers" class="section white">
         <h2 class="section-title">våra kunder</h2>
         <p>Bland våra nöjda kunder återfinns några av Sveriges starkaste varumärken inom media, spel, underhållning, e-learning och telecom.Flera är världsledande. Dessa kunder förväntar sig toppklass och vi levererar just det. Varje dag. Vi har inga utbildningsdagar, inga konferenser och inga interna möten. För vi tror på att producera. Varje dag.</p>
         <p>Välkommen du med, vi levererar i tid med kvalité.</p>

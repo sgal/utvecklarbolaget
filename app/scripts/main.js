@@ -89,5 +89,32 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
-  
+  $('#contact-form').on('submit', function() {
+    // var name = $('#name').val();
+    // var email = $('#email').val();
+    // var message = $('#msg').val();
+
+    // $.ajax({
+
+    // })
+    console.log($(this).serialize());
+    // Submit the form using AJAX.
+    $.ajax({
+        type: 'POST',
+        url: 'http://utvecklarbolaget.se/contact.php',
+        data: $(this).serialize()
+    })
+    .done(function(response) {
+        console.log(response);
+    })
+    .fail(function(data) {
+        // Set the message text.
+        if (data.responseText !== '') {
+            alert(data.responseText);
+        } else {
+            alert('Oops! An error occured and your message could not be sent.');
+        }
+    });
+    return false;
+  });
 });
