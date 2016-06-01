@@ -170,6 +170,48 @@ $nav-bg-sticked:        #fafafa;
 .contact-form {
   border-top: 2px solid rgba(255,255,255,.8);
   padding: 0 $spacing-sm $spacing-md $spacing-sm;
+  position: relative;
+
+  // TODO: update this style
+  .data-sent-message,
+  .data-error-message {
+    opacity: 0;
+    transition: opacity .3s ease-in;
+    position: absolute;
+  }
+
+  .data-sent-message {
+    top: 90px;
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .data-error-message {
+    border: 1px solid $error-border-color;
+    color: $error-border-color;
+    padding: $error-padding;
+    z-index: 9;
+    background-color: $error-bg-color;
+    left: 0;
+  }
+
+  &.data-sent {
+    .data-sent-message {
+      opacity: 1;
+    }
+
+    form {
+      opacity: 0;
+    }
+  }
+
+  &.data-sent-error {
+    .data-error-message {
+      opacity: 1;
+    }
+  }
 
   .contact-form-header {
     color: #fff;
@@ -180,6 +222,11 @@ $nav-bg-sticked:        #fafafa;
   .contact-form-send {
     text-align: right;
     margin-top: $spacing-sm;
+  }
+
+  .form-field {
+    position: relative;
+    margin-bottom: $contact-field-margin;
   }
 
   @media (min-width: $screen-sm) {

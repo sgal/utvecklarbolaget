@@ -1,0 +1,27 @@
+@import "../utils";
+
+.help-block {
+  padding: $error-padding;
+  font-style: normal;
+  position: absolute;
+  right: 0;
+  top: -15px;
+  background-color: $error-bg-color;
+  border: 1px solid $error-border-color;
+  z-index: 9;
+  border-radius: 3px;
+  color: $error-border-color;
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: $error-arrow-height solid $error-bg-color;
+    border-left: $error-arrow-height solid transparent;
+    border-right: $error-arrow-height solid transparent;
+    bottom: -$error-arrow-height;
+    right: 20px;
+  }
+}
+

@@ -200,21 +200,25 @@
           <a href="#calculator" class="menu-item menu-calculator">l&ouml;nesnurra</a>
           <a href="#contact" class="menu-item menu-contact">kontakt</a>
           <div class="contact-form">
+            <div class="data-sent-message">Thank you for contacting us! We'll get back to you as soon as possible</div>
+            <div class="data-error-message">
+              Unfortunately, we were unable to send your message. Try again in a minute.
+            </div>
             <h2 class="contact-form-header">Kontakt</h2>
             <form id="contact-form">
               <fieldset class="form-field">
                 <label for="name">Namn</label>
-                <input type="text" id="name" name="name" value="" placeholder="Namn" required/>
+                <input type="text" id="name" name="name" value="" placeholder="Namn"/>
               </fieldset>
 
               <fieldset class="form-field">
                 <label for="email">E-post</label>
-                <input type="email" id="email" name="email" value="" placeholder="E-post" required/>
+                <input type="email" id="email" name="email" value="" placeholder="E-post"/>
               </fieldset>
 
               <fieldset class="form-field">
-                <label for="msg">Meddelande</label>
-                <textarea id="msg" name="message" placeholder="Meddelande" required></textarea>
+                <label for="message">Meddelande</label>
+                <textarea id="message" name="message" placeholder="Meddelande"></textarea>
               </fieldset>
               <div class="contact-form-send">
                 <button type="submit" id="send-contact-details">Skicka</button>
@@ -309,6 +313,7 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/vendor/jquery-1.11.0.min.js"></script>
+    <script src="scripts/vendor/jquery.validate.min.js"></script>
     <script src="scripts/vendor/jquery.animate.enhanced.min.js"></script>
     <script src="scripts/vendor/jquery.debounce-1.0.5.js"></script>
     <script src="scripts/vendor/history.js"></script>

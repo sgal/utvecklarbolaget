@@ -10,11 +10,11 @@
 
 .section {
   max-width: $content-width-sm;
-  padding: 0 $spacing-sm $section-margin-bottom-sm;
+  margin: 0 $spacing-sm $section-margin-bottom-sm;
 
   @media (min-width: $screen-sm) {
     max-width: $content-width-md;
-    padding: 0 auto $section-margin-bottom-lg;
+    margin: 0 auto $section-margin-bottom-lg;
   }
 
   @media (min-width: $screen-md) {

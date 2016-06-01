@@ -1,36 +1,39 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  var ERROR_HIDE_DELAY = 3000;
+
   // Toggle hamburger menu
-  $('.hamburger-menu').on('click touchend', function(event){
+  $('.hamburger-menu').on('click touchend', function (event) {
     event.preventDefault();
+    resetForm();
     $('.header-wrap').toggleClass('js-openNav');
   });
 
 
   var isNavigating = false,
-      disableScroll = false,
-      justLoaded = true,
-      History = new StateHistory();
+    disableScroll = false,
+    justLoaded = true,
+    History = new StateHistory();
 
   function highLightMenuFromHash() {
     var hash = History.getState().substr(1),
-        target = $('.menu-item.menu-' + hash);
+      target = $('.menu-item.menu-' + hash);
 
-    if(!target.hasClass('active')) {
+    if (!target.hasClass('active')) {
       $('.menu-item').removeClass('active');
       target.addClass('active');
     }
   }
 
   function handleScrollToHighlightMenu(event) {
-    if(disableScroll) {
+    if (disableScroll) {
       disableScroll = false;
     }
-    else if(!isNavigating) {
+    else if (!isNavigating) {
       var currentState = History.getState().substr(1);
-      $('.section').each(function() {
+      $('.section').each(function () {
         if ($(this).offset().top < window.pageYOffset + 200 &&
-            $(this).offset().top + $(this).height() > window.pageYOffset + 200) {
-          if(currentState !== $(this).attr('id')) {
+          $(this).offset().top + $(this).height() > window.pageYOffset + 200) {
+          if (currentState !== $(this).attr('id')) {
             History.pushState($(this).attr('id'));
             if (currentState === 'home') {
               $('.sticky-menu-desktop').addClass('sticked');
@@ -51,22 +54,22 @@ $(document).ready(function() {
   justLoaded = false;
 
   // smooth anchor scrolling
-  $('a[href*=#]:not([href=#])').click(function(event) {
-    if(location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') && location.hostname === this.hostname) {
+  $('a[href*=#]:not([href=#])').click(function (event) {
+    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
       var target = $(this.hash),
-          hash = this.hash,
-          scrollPosition = 0;
+        hash = this.hash,
+        scrollPosition = 0;
 
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
       if (target.length) {
         event.preventDefault();
         event.stopPropagation();
         isNavigating = true;
         scrollPosition = target.offset().top - 65;
-        
+
         $('html, body').animate({
           scrollTop: scrollPosition
-        }, 500, function() {
+        }, 500, function () {
           isNavigating = false;
           handleScrollToHighlightMenu();
           History.pushState(hash);
@@ -81,40 +84,60 @@ $(document).ready(function() {
     highLightMenuFromHash();
   }
 
-  History.onStateChanged(function() {
+  History.onStateChanged(function () {
     highLightMenuFromHash();
   });
 
-  $(window).on('hashchange', function(event) {
+  $(window).on('hashchange', function (event) {
     event.preventDefault();
   });
 
-  $('#contact-form').on('submit', function() {
-    // var name = $('#name').val();
-    // var email = $('#email').val();
-    // var message = $('#msg').val();
+  function resetForm() {
+    $('.contact-form').removeClass('data-sent');
+    $('#name, #email, #message').val('');
+    $('#send-contact-details').prop('disabled', false);
+  }
 
-    // $.ajax({
+  $('#contact-form').validate({
+    rules: {
+      name: {
+        required: true,
+        minlength: 2
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      message: 'required'
+    },
+    messages: {
+      name: 'Please enter your name',
+      email: 'Please enter a valid email address',
+      message: 'Please enter a message you want to send'
+    },
+    errorElement: 'em',
+    errorPlacement: function (error, element) {
+      error.addClass('help-block');
+      error.insertBefore(element);
+    },
+    submitHandler: function () {
+      $('#send-contact-details').prop('disabled', true);
+      $.ajax({
+          type: 'POST',
+          url: 'http://utvecklarbolaget.se/contact.php',
+          data: $('#contact-form').serialize()
+      })
+      .done(function(response) {
+        $('.contact-form').addClass('data-sent');
+      })
+      .fail(function (data) {
+          $('.contact-form').addClass('data-sent-error');
+          $('#send-contact-details').prop('disabled', false);
 
-    // })
-    console.log($(this).serialize());
-    // Submit the form using AJAX.
-    $.ajax({
-        type: 'POST',
-        url: 'http://utvecklarbolaget.se/contact.php',
-        data: $(this).serialize()
-    })
-    .done(function(response) {
-        console.log(response);
-    })
-    .fail(function(data) {
-        // Set the message text.
-        if (data.responseText !== '') {
-            alert(data.responseText);
-        } else {
-            alert('Oops! An error occured and your message could not be sent.');
-        }
-    });
-    return false;
+          setTimeout(function () {
+            $('.contact-form').removeClass('data-sent-error');
+          }, ERROR_HIDE_DELAY);
+      });
+    }
   });
 });
