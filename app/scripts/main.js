@@ -124,7 +124,7 @@ $(document).ready(function () {
       $('#send-contact-details').prop('disabled', true);
       $.ajax({
           type: 'POST',
-          url: 'http://utvecklarbolaget.se/contact.php',
+          url: window.location.protocol + '//utvecklarbolaget.se/contact.php',
           data: $('#contact-form').serialize()
       })
       .done(function(response) {
