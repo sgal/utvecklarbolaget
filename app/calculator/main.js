@@ -50,7 +50,7 @@
 
     range.addEventListener('mouseup', onMouseEnd, false);
     range.addEventListener('touchend', onTouchEnd, false);
-    
+
 
     input.addEventListener('input', function() {
       changeListener(input, range)();
@@ -114,6 +114,8 @@
   function updateCounter() {
     var bruttoSalary = calculateBruttoSalary(values.js, values.consult, values.frameworks, values.professional, values.nodejs);
 
+    toggleForm(bruttoSalary);
+
     var salaryArr = Math.round(bruttoSalary).toString().split('');
 
     var numbers = d.querySelectorAll('.numbers');
@@ -127,6 +129,22 @@
       values[key] = parseInt(value, 10);
       updateCounter();
     };
+  }
+
+  function toggleForm(isEnabled) {
+    var formWrap = $('.calculator');
+    var form = $('.calculator-send-form');
+
+    if (formWrap.hasClass('show-form')) {
+      if (!isEnabled) {
+        formWrap.removeClass('show-form');
+      }
+    }
+    else {
+      if (isEnabled) {
+        formWrap.addClass('show-form');
+      }
+    }
   }
 
   var js = new Range('js-years', update('js'));

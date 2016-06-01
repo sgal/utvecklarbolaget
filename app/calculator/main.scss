@@ -6,6 +6,8 @@ $counter-height-lg: 65px;
 $counter-font-size-sm: 46px;
 $counter-font-size-lg: 46px;
 
+$calculator-send-bg: #f8f8f8;
+
 .calculator {
   @import '../styles/utils';
   @import '../styles/partials/normalize';
@@ -13,158 +15,200 @@ $counter-font-size-lg: 46px;
 
   @import 'inputrange';
 
+  position: relative;
+  font: normal #{$font-size-base}/#{$line-height} $font-family-base;
+
   * {
     box-sizing: border-box;
   }
 
-  font: normal #{$font-size-base}/#{$line-height} $font-family-base;
-  max-width: $content-width-sm;
-  padding: 0 $spacing-sm $section-margin-bottom-lg;
-
-  @media (min-width: $screen-sm) {
-    max-width: $content-width-md;
-    margin: 0 auto $section-margin-bottom-sm;
-  }
-
-  @media (min-width: $screen-md) {
-    max-width: $content-width-lg;
-  }
-
-  .section-title {
-    text-align: center;
-    font-weight: normal;
-    font-size: 2rem;
-    margin: $spacing-sm 0;
-  }
-
-  label {
-    color: initial;
-    display: block;
-    text-align: center;
+  .calculator-wrap {
+    max-width: $content-width-sm;
+    padding: 0 $spacing-sm $section-margin-bottom-lg;
 
     @media (min-width: $screen-sm) {
-      display: inline-block;
-      text-align: left;
+      max-width: $content-width-md;
+      margin: 0 auto $section-margin-bottom-sm;
     }
 
-    &.checkboxed {
-      text-indent: -20px;
-      padding-left: 20px;
+    @media (min-width: $screen-md) {
+      max-width: $content-width-lg;
     }
 
-    [type=checkbox] {
-      margin-right: 4px;
-      position: relative;
+    .section-title {
+      text-align: center;
+      font-weight: normal;
+      font-size: 2rem;
+      margin: $spacing-sm 0;
     }
-  }
-
-  input {
-    display: initial;
-    width: auto;
-    outline: none;
-  }
-
-  .range-control {
-    display: flex;
-    margin: 0 $spacing-md;
-    @media (min-width: $screen-sm) {
-      margin: 0;
-    }
-
-    .range {
-      flex-grow: 10;
-      margin-right: 15px;
-      border-width: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .range-value {
-      flex-grow: 0;
-      width: 75px;
-    }
-  }
-
-  .checkbox-control {
-    margin: 15px 0;
 
     label {
-      text-align: left;
-    }
-  }
-
-  .counter {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-
-  .numbers-wrap {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-
-    .numbers {
-
-      @media (max-width: $screen-sm) {
-        width: $counter-width-sm;
-        height: $counter-height-sm;
-        font: normal $counter-font-size-sm/1 Arial;
-      }
+      color: initial;
+      display: block;
 
       @media (min-width: $screen-sm) {
-        width: $counter-width-lg;
-        height: $counter-height-lg;
-        font: normal $counter-font-size-lg/1 Arial;
+        display: inline-block;
+        text-align: left;
       }
 
-      background-color: #333;
-      color: #fff;
-      border-radius: 6px;
-      margin: 0 3px;
-      overflow: hidden;
-      padding-top: 7px;
+      &.checkboxed {
+        text-indent: -20px;
+        padding-left: 20px;
+      }
 
-      &:nth-child(3) {
-        margin-right: 15px;
-        @media (min-width: $screen-sm) {
-          margin-right: 25px;
-        }
+      [type=checkbox] {
+        margin-right: 4px;
+        position: relative;
       }
     }
 
-    .unit {
-      @media (max-width: $screen-sm) {
-        font-size: .7rem;
-      }
-
-      @media (min-width: $screen-md) {
-        font-size: 1.5rem;
-      }
+    input {
+      display: initial;
+      width: auto;
+      outline: none;
     }
 
-    .n {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    .range-control {
       display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transform: translateY(0);
-      transition: all .3s ease-in-out;
-
-      .i {
-        height: $counter-digit-height;
-        text-align: center;
+      margin: 0 $spacing-md 1rem;
+      @media (min-width: $screen-sm) {
+        margin: 0;
       }
 
-      @for $i from 0 through 9 {
-        &.n-#{$i} {
-          transform: translateY(-($i * $counter-digit-height));
-          animation-delay: ($i * .1)s;
+      .range {
+        flex-grow: 10;
+        margin-right: 15px;
+        border-width: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .range-value {
+        flex-grow: 0;
+        width: 75px;
+      }
+    }
+
+    .checkbox-control {
+      margin: 15px 0;
+
+      label {
+        text-align: left;
+      }
+    }
+
+    .counter {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .numbers-wrap {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+
+      .numbers {
+
+        @media (max-width: $screen-sm) {
+          width: $counter-width-sm;
+          height: $counter-height-sm;
+          font: normal $counter-font-size-sm/1 Arial;
         }
+
+        @media (min-width: $screen-sm) {
+          width: $counter-width-lg;
+          height: $counter-height-lg;
+          font: normal $counter-font-size-lg/1 Arial;
+        }
+
+        background-color: #333;
+        color: #fff;
+        border-radius: 6px;
+        margin: 0 3px;
+        overflow: hidden;
+        padding-top: 7px;
+
+        &:nth-child(3) {
+          margin-right: 15px;
+          @media (min-width: $screen-sm) {
+            margin-right: 25px;
+          }
+        }
+      }
+
+      .unit {
+        @media (max-width: $screen-sm) {
+          font-size: .7rem;
+        }
+
+        @media (min-width: $screen-md) {
+          font-size: 1.5rem;
+        }
+      }
+
+      .n {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: translateY(0);
+        transition: all .3s ease-in-out;
+
+        .i {
+          height: $counter-digit-height;
+          text-align: center;
+        }
+
+        @for $i from 0 through 9 {
+          &.n-#{$i} {
+            transform: translateY(-($i * $counter-digit-height));
+            animation-delay: ($i * .1)s;
+          }
+        }
+      }
+    }
+  }
+
+  &.show-form {
+    .calculator-send-form {
+      opacity: 1;
+      bottom: -40%;
+    }
+  }
+
+  .calculator-send-form {
+    background-color: $calculator-send-bg;
+    padding: 20px;
+    opacity: 0;
+    transition: all .3s ease-out;
+    position: absolute;
+    bottom: -70%;
+    width: 100%;
+
+    .calculator-form-header {
+      text-align: center;
+    }
+
+    .form-wrap {
+      width: 320px;
+      margin: 0 auto;
+
+      .form-field {
+        margin-bottom: 15px;
+
+        label {
+          margin-bottom: 5px;
+          color: inherit;
+        }
+      }
+
+      input {
+        width: 100%;
       }
     }
   }
