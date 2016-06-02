@@ -13,13 +13,39 @@ gulp.task('calculator', ['calculatorstyles'], function() {
       endtag: '/* endinject */',
       removeTags: true,
       transform: function (filePath, file) {
-        // return file contents as string 
+        // return file contents as string
         return file.contents.toString('utf8');
       }
     }))
     // .pipe($.inlineCss({removeStyleTags: false, applyStyleTags: true}))
-    .pipe($.inlineSource({compress: true}))
-    .pipe(gulp.dest('.tmp/calculator'))
+    .pipe($.inlineSource({ compress: false }))
+    .pipe(gulp.dest('.tmp/calculator'));
+});
+
+gulp.task('calculator:dist', ['calculatorstyles'], function() {
+  return gulp.src('app/calculator/*.html')
+    .pipe($.inject(gulp.src('.tmp/calculatorstyles/*.css'), {
+      starttag: '/* inject:calculatorstyle */',
+      endtag: '/* endinject */',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string
+        return file.contents.toString('utf8');
+      }
+    }))
+    .pipe($.inject(gulp.src([
+      'app/scripts/vendor/jquery-1.11.0.min.js',
+      'app/scripts/vendor/jquery.validate.min.js'
+    ]), {
+      starttag: '<!-- inject:jquery -->',
+      endtag: '<!-- endinject -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string
+        return '<script type="text/javascript">' + file.contents.toString('utf8') + '</script>';
+      }
+    }))
+    .pipe($.inlineSource({compress: false}))
     .pipe(gulp.dest('dist/calculator'));
 });
 
@@ -50,7 +76,7 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['clearscripts', 'styles', 'calculator'], function () {
+gulp.task('html', ['clearscripts', 'styles', 'calculator', 'calculator:dist'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
@@ -58,7 +84,15 @@ gulp.task('html', ['clearscripts', 'styles', 'calculator'], function () {
       starttag: '<!-- inject:calculator -->',
       removeTags: true,
       transform: function (filePath, file) {
-        // return file contents as string 
+        // return file contents as string
+        return file.contents.toString('utf8');
+      }
+    }))
+    .pipe($.inject(gulp.src('dist/calculator/index.html'), {
+      starttag: '<!-- inject:calculator:dist -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string
         return file.contents.toString('utf8');
       }
     }))
@@ -82,7 +116,7 @@ gulp.task('html:dist', ['styles', 'calculator'], function () {
       starttag: '<!-- inject:calculator -->',
       removeTags: true,
       transform: function (filePath, file) {
-        // return file contents as string 
+        // return file contents as string
         return file.contents.toString('utf8');
       }
     }))

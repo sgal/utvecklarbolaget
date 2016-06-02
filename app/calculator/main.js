@@ -1,4 +1,4 @@
-(function(w, d) {
+(function (w, d) {
   'use strict';
 
   var checkboxValue = 20;
@@ -152,4 +152,47 @@
   var frameworks = new Range('frameworks-number', update('frameworks'));
   var professional = new Checkbox('professional', update('professional'));
   var nodejs = new Checkbox('nodejs', update('nodejs'));
+
+  $('#calculator-send-form').validate({
+    focusInvalid: false,
+    debug: true,
+    rules: {
+      email: {
+        required: true,
+        email: true
+      },
+      phone: {
+        required: true,
+        phoneSE: true
+      }
+    },
+    messages: {
+      email: 'Fyll i en giltig e-post adress', // 'Ange en giltig email address',
+      Phone: 'Telefonnummer'// 'Obligatoriskt f&auml;lt'
+    },
+    errorElement: 'em',
+    errorPlacement: function (error, element) {
+      error.addClass('help-block');
+      error.insertBefore(element);
+    },
+    submitHandler: function () {
+      $('#send-contact-details').prop('disabled', true);
+      $.ajax({
+          type: 'POST',
+          url: window.location.protocol + '//utvecklarbolaget.se/contact.php',
+          data: $('#contact-form').serialize()
+      })
+      .done(function(response) {
+        $('.contact-form').addClass('data-sent');
+      })
+      .fail(function (data) {
+          $('.contact-form').addClass('data-sent-error');
+          $('#send-contact-details').prop('disabled', false);
+
+          setTimeout(function () {
+            $('.contact-form').removeClass('data-sent-error');
+          }, ERROR_HIDE_DELAY);
+      });
+    }
+  })
 })(window, document);
