@@ -99,6 +99,7 @@ $(document).ready(function () {
   }
 
   $('#contact-form').validate({
+    focusInvalid: false,
     rules: {
       name: {
         required: true,
@@ -111,9 +112,9 @@ $(document).ready(function () {
       message: 'required'
     },
     messages: {
-      name: 'Please enter your name',
-      email: 'Please enter a valid email address',
-      message: 'Please enter a message you want to send'
+      name: 'Fyll i ditt namn', //'Obligatoriskt f&auml;lt',
+      email: 'Fyll i en giltig e-post adress', // 'Ange en giltig email address',
+      message: 'Skriv ditt meddelande'// 'Obligatoriskt f&auml;lt'
     },
     errorElement: 'em',
     errorPlacement: function (error, element) {

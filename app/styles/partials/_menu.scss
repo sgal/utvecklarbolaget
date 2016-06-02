@@ -9,9 +9,10 @@ $nav-bg-sticked:        #fafafa;
 
 .sticky-menu-desktop {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: rgba($nav-bg-init, .8);
+  background-color: rgba($nav-bg-init, .9);
   z-index: 1000;
   height: $nav-height;
   transition: all .2s .1s ease-in-out;
@@ -118,12 +119,13 @@ $nav-bg-sticked:        #fafafa;
     width: 100%;
     height: 100%;
     padding-bottom: $nav-height;
-    background-color: rgba($nav-bg-init, .8);
+    background-color: rgba($nav-bg-init, .9);
     transition: all .1s ease-in-out;
     opacity: .6;
     transform: translateX(-100%);
     backface-visibility: hidden;
-    overflow: auto;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 
     @media (min-width: $screen-sm) {
       position: relative;

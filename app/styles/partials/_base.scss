@@ -5,7 +5,6 @@
   display: none!important;
 }
 
-
 // Base structure
 
 .section {
@@ -111,7 +110,7 @@ $quotation-mark-size: 2rem;
     font-style: italic;
     color: $color-header-color;
     display: block;
-    
+
     &:before,
     &:after {
       content: "";

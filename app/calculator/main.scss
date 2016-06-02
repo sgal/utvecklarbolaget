@@ -187,7 +187,7 @@ $calculator-send-bg: #f8f8f8;
     opacity: 0;
     transition: all .3s ease-out;
     position: absolute;
-    bottom: -70%;
+    bottom: -25%;
     width: 100%;
 
     .calculator-form-header {
@@ -195,8 +195,15 @@ $calculator-send-bg: #f8f8f8;
     }
 
     .form-wrap {
-      width: 320px;
       margin: 0 auto;
+
+      @media (max-width: $screen-sm) {
+        width: auto;
+      }
+
+      @media (min-width: $screen-sm) {
+        width: 320px;
+      }
 
       .form-field {
         margin-bottom: 15px;
