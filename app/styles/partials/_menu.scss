@@ -45,19 +45,6 @@ $nav-bg-sticked:        #fafafa;
       max-width: $screen-sm;
       margin: 0 auto;
     }
-
-    // Nav toggle
-    &.js-openNav {
-      .menu-items-box {
-        opacity: 1;
-        top: $nav-height;
-        transform: translateY(0);
-
-        @media (min-width: $screen-sm) {
-          top: auto;
-        }
-      }
-    }
   }
 
   // Logotype
@@ -155,6 +142,30 @@ $nav-bg-sticked:        #fafafa;
         &:last-child {
           margin-right: 0;
         }
+
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #fff;
+          opacity: 0;
+          transition: all .2s ease-in-out;
+          transform: translateY(4px);
+
+          .sticked & {
+            background-color: #000;
+          }
+        }
+
+        &.active{
+          &:after {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       }
     }
 
@@ -162,7 +173,28 @@ $nav-bg-sticked:        #fafafa;
       display: none;
       @media (min-width: $screen-sm) {
         display: inline-block;
+
+        .js-openContact & {
+          &:after {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       }
+    }
+  }
+}
+
+// Nav toggle
+.js-openNav {
+  overflow: hidden;
+  .menu-items-box {
+    opacity: 1;
+    top: $nav-height;
+    transform: translateY(0);
+
+    @media (min-width: $screen-sm) {
+      top: auto;
     }
   }
 }
@@ -232,13 +264,23 @@ $nav-bg-sticked:        #fafafa;
   }
 
   @media (min-width: $screen-sm) {
-    display: none; // Hide this for now
+    visibility: hidden;
     position: fixed;
-    top: $nav-height-lg;
+    top: $nav-height-lg - 10;
     right: 0;
     background-color: rgba(0,0,0,.8);
     border-top: 0;
+    padding: $spacing-md $spacing-lg;
     min-width: 250px;
     max-width: 100%;
+    transition: all .2s ease-in-out;
+    transform: translateX(100%);
+    opacity: 0;
+
+    .js-openContact & {
+      visibility: visible;
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 }

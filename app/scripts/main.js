@@ -5,7 +5,19 @@ $(document).ready(function () {
   $('.hamburger-menu').on('click touchend', function (event) {
     event.preventDefault();
     resetForm();
-    $('.header-wrap').toggleClass('js-openNav');
+    $('body').toggleClass('js-openNav');
+  });
+
+  $('.menu-item').on('click touchend', function (event) {
+    event.preventDefault();
+    resetForm();
+    $('body').removeClass('js-openNav');
+  });
+
+  $('.menu-contact').on('click touchend', function (event) {
+    event.preventDefault();
+    resetForm();
+    $('body').toggleClass('js-openContact');
   });
 
 

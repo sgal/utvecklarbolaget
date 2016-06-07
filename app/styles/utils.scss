@@ -52,7 +52,7 @@ $font-size-xs:          ($font-size-base * .75);
 
 $line-height:           1.5;
 $line-height-lg:        (4 / 3);
-$line-height-sm:        $line-height;
+$line-height-sm:        $line-height - 0.3;
 
 
 // BUTTONS

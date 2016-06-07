@@ -1,6 +1,13 @@
 @import '../utils';
 @import 'controls';
 
+@media (min-width: $screen-sm) {
+  body {
+    line-height: $line-height-sm;
+  }
+}
+
+
 .hidden {
   display: none!important;
 }
@@ -26,7 +33,7 @@
     align-items: center;
     justify-content: center;
     max-width: 100%;
-    margin: 0;
+    margin: 0 0 $spacing-lg;
     padding: 0;
     text-align: center;
     background-image: linear-gradient(to bottom, $color-primary, $color-primary-dark);
@@ -146,6 +153,10 @@ $quotation-mark-size: 2rem;
     color: $color-gray-mute;
     padding-bottom: $spacing-lg;
   }
+
+  .social-buttons {
+    padding-bottom: $spacing-lg;
+  }
 }
 
 
@@ -193,5 +204,25 @@ $quotation-mark-size: 2rem;
 
   address {
     font-style: normal;
+  }
+}
+
+.social-buttons {
+  text-align: center;
+  margin-top: $spacing-md;
+}
+
+.icon-social  {
+  display: inline-block;
+  svg {
+    width: 50px;
+    height: 50px;
+    fill: #fff;
+    opacity: .8;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
