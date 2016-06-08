@@ -205,6 +205,10 @@ $nav-transition-speed:  .3s;
   border-top: 2px solid rgba(255,255,255,.8);
   position: relative;
 
+  .data-sent-message {
+    color: #fff;
+  }
+
   .contact-form-header {
     color: #fff;
     margin: $spacing-sm 0 0;
@@ -219,38 +223,6 @@ $nav-transition-speed:  .3s;
   .form-field {
     position: relative;
     margin-bottom: $contact-field-margin;
-  }
-
-  // Validation
-
-  .data-error-message,
-  .data-sent-message {
-    display: none;
-  }
-
-  &.data-sent {
-    .data-sent-message {
-      display: block;
-      font-size: $font-size-lg;
-      color: #fff;
-      text-align: center;
-      margin-top: $spacing-md
-    }
-    .contact-form,
-    .contact-form-header {
-      display: none;
-    }
-  }
-
-  &.data-sent-error {
-    .data-error-message {
-      display: block;
-      border: 1px solid $error-border-color;
-      color: $error-border-color;
-      padding: $error-padding;
-      background-color: $error-bg-color;
-      margin-top: $spacing-md
-    }
   }
 
   @media (min-width: $screen-sm) {

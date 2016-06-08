@@ -136,6 +136,8 @@
     formValidator && formValidator.resetForm();
     $('#email, #phone').val('');
     $('#send-calculator-details').prop('disabled', false);
+    $('.calculator-send-form').removeClass('data-sent');
+    $('.calculator-send-form').removeClass('data-sent-error');
   }
 
   function toggleForm(isEnabled) {
@@ -185,6 +187,16 @@
     },
     submitHandler: function () {
       $('#send-calculator-details').prop('disabled', true);
+
+      $('#frontend-hidden').val(values.js);
+      $('#consultant-hidden').val(values.consult);
+      $('#framework-hidden').val(values.frameworks);
+      $('#professional-hidden').val(values.professional ? 'Yes' : 'No');
+      $('#nodejs-hidden').val(values.nodejs ? 'Yes' : 'No');
+
+      var salaryCalculated = Math.round(calculateBruttoSalary(values.js, values.consult, values.frameworks, values.professional, values.nodejs));
+      $('#calculation-hidden').val(salaryCalculated);
+
       $.ajax({
           type: 'POST',
           url: window.location.protocol + '//utvecklarbolaget.se/calculator.php',

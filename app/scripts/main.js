@@ -108,6 +108,7 @@ $(document).ready(function () {
 
   function resetForm() {
     $('.contact-form-wrap').removeClass('data-sent');
+    $('.contact-form-wrap').removeClass('data-sent-error');
     $('#name, #email, #message').val('');
     $('#send-contact-details').prop('disabled', false);
     validator && validator.resetForm();

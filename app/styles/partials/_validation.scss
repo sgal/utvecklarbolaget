@@ -25,3 +25,36 @@
   }
 }
 
+// Validation
+
+.data-error-message,
+.data-sent-message {
+  display: none;
+}
+
+.data-sent {
+  .data-sent-message {
+    display: block;
+    font-size: $font-size-lg;
+    text-align: center;
+    margin: $spacing-md 0;
+  }
+  .contact-form,
+  .contact-form-header,
+  .calculator-form-wrap,
+  .calculator-form-header {
+    display: none;
+  }
+}
+
+.data-sent-error {
+  .data-error-message {
+    display: block;
+    border: 1px solid $error-border-color;
+    color: $error-border-color;
+    padding: $error-padding;
+    background-color: $error-bg-color;
+    margin: $spacing-md 0;
+  }
+}
+

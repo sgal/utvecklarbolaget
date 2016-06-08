@@ -127,8 +127,9 @@
     </div>
   </div>
   <div class="calculator-send-form">
+    <div class="data-sent-message">Tack f&ouml;r att du&nbsp;valt att kontakta Utvecklarbolaget, vi&nbsp;&aring;terkoppla snarast!</div>
     <h4 class="calculator-form-header">Ange dina kontaktuppgifter i formuläret nedan så kommer vi kontakta dig så snart vi kan</h4>
-    <div class="form-wrap">
+    <div class="calculator-form-wrap">
       <form id="calculator-send-form">
         <fieldset class="form-field">
           <label for="email">Ange din e-postadress</label>
@@ -140,11 +141,14 @@
           <input type="phone" id="phone" name="phone" value="" placeholder="Telefonnummer"/>
         </fieldset>
 
-        <input type="hidden" name="frontend" value="" />
-        <input type="hidden" name="consultant" value="" />
-        <input type="hidden" name="framework" value="" />
-        <input type="hidden" name="professional" value="" />
-        <input type="hidden" name="nodejs" value="" />
+        <input type="hidden" id="frontend-hidden" name="frontend_years" value="" />
+        <input type="hidden" id="consultant-hidden" name="consultant_years" value="" />
+        <input type="hidden" id="framework-hidden" name="js_frameworks" value="" />
+        <input type="hidden" id="professional-hidden" name="professional" value="" />
+        <input type="hidden" id="nodejs-hidden" name="nodejs" value="" />
+        <input type="hidden" id="calculation-hidden" name="salary" value="" />
+
+        <div class="data-error-message">Tyv&auml;rr kunde vi&nbsp;inte s&auml;nda ditt meddelande, f&ouml;rs&ouml;k igen om&nbsp;en&nbsp;liten stund</div>
 
         <div class="calculator-form-send">
           <button type="submit" id="send-calculator-details">Skicka</button>

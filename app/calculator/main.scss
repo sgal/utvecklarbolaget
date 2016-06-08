@@ -38,6 +38,10 @@ $calculator-send-bg: #f8f8f8;
       max-width: $content-width-lg;
     }
 
+    .data-sent-message {
+      color: inherit;
+    }
+
     .section-title {
       text-align: center;
       font-weight: normal;
@@ -208,7 +212,7 @@ $calculator-send-bg: #f8f8f8;
       padding: 0 $spacing-sm;
     }
 
-    .form-wrap {
+    .calculator-form-wrap {
       margin: 0 auto;
       padding: 0 $spacing-md $spacing-lg $spacing-md;
 
