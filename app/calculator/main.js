@@ -2,6 +2,7 @@
   'use strict';
 
   var checkboxValue = 20;
+  var formValidator = void (0);
 
   var values = {
     js: 4,
@@ -131,6 +132,12 @@
     };
   }
 
+  function resetForm() {
+    formValidator && formValidator.resetForm();
+    $('#email, #phone').val('');
+    $('#send-calculator-details').prop('disabled', false);
+  }
+
   function toggleForm(isEnabled) {
     var formWrap = $('.calculator');
     var form = $('.calculator-send-form');
@@ -142,6 +149,7 @@
     }
     else {
       if (isEnabled) {
+        resetForm();
         formWrap.addClass('show-form');
       }
     }
@@ -153,7 +161,7 @@
   var professional = new Checkbox('professional', update('professional'));
   var nodejs = new Checkbox('nodejs', update('nodejs'));
 
-  $('#calculator-send-form').validate({
+  formValidator = $('#calculator-send-form').validate({
     focusInvalid: false,
     debug: true,
     rules: {
@@ -168,7 +176,7 @@
     },
     messages: {
       email: 'Fyll i en giltig e-post adress', // 'Ange en giltig email address',
-      Phone: 'Telefonnummer'// 'Obligatoriskt f&auml;lt'
+      phone: 'Fyll i ett giltigt telefonnummer'// 'Obligatoriskt f&auml;lt'
     },
     errorElement: 'em',
     errorPlacement: function (error, element) {
@@ -176,21 +184,21 @@
       error.insertBefore(element);
     },
     submitHandler: function () {
-      $('#send-contact-details').prop('disabled', true);
+      $('#send-calculator-details').prop('disabled', true);
       $.ajax({
           type: 'POST',
-          url: window.location.protocol + '//utvecklarbolaget.se/contact.php',
-          data: $('#contact-form').serialize()
+          url: window.location.protocol + '//utvecklarbolaget.se/calculator.php',
+          data: $('#calculator-send-form').serialize()
       })
       .done(function(response) {
-        $('.contact-form').addClass('data-sent');
+        $('.calculator-send-form').addClass('data-sent');
       })
       .fail(function (data) {
-          $('.contact-form').addClass('data-sent-error');
-          $('#send-contact-details').prop('disabled', false);
+          $('.calculator-send-form').addClass('data-sent-error');
+          $('#send-calculator-details').prop('disabled', false);
 
           setTimeout(function () {
-            $('.contact-form').removeClass('data-sent-error');
+            $('.calculator-send-form').removeClass('data-sent-error');
           }, ERROR_HIDE_DELAY);
       });
     }

@@ -1,5 +1,6 @@
 $(document).ready(function () {
   var ERROR_HIDE_DELAY = 3000;
+  var validator = void (0);
 
   // Toggle hamburger menu
   $('.hamburger-menu').on('click touchend', function (event) {
@@ -109,9 +110,10 @@ $(document).ready(function () {
     $('.contact-form-wrap').removeClass('data-sent');
     $('#name, #email, #message').val('');
     $('#send-contact-details').prop('disabled', false);
+    validator && validator.resetForm();
   }
 
-  $('#contact-form').validate({
+  validator = $('#contact-form').validate({
     focusInvalid: false,
     rules: {
       name: {
