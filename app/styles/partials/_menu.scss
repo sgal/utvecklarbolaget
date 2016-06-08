@@ -3,6 +3,8 @@
 $nav-bg-init:           #000;
 $nav-bg-sticked:        #fafafa;
 
+$nav-transition-speed:  .3s;
+
 .sticky-menu {
   display: none;
 }
@@ -14,11 +16,11 @@ $nav-bg-sticked:        #fafafa;
   width: 100%;
   background-color: rgba($nav-bg-init, .9);
   z-index: 1000;
-  height: $nav-height;
-  transition: all .2s .1s ease-in-out;
+  //height: $nav-height;
+  transition: all $nav-transition-speed .1s ease-in-out;
 
   @media (min-width: $screen-sm) {
-    height: $nav-height-lg;
+    //height: $nav-height-lg;
     &.sticked {
       background-color: rgba($nav-bg-sticked, .9);
       .header-wrap {
@@ -40,7 +42,7 @@ $nav-bg-sticked:        #fafafa;
     display: flex;
     align-items: center;
     margin: 0 $spacing-sm;
-    transition: all .2s ease-in-out;
+    transition: all $nav-transition-speed ease-in-out;
     @media (min-width: $screen-sm) {
       max-width: $screen-sm;
       margin: 0 auto;
@@ -51,20 +53,21 @@ $nav-bg-sticked:        #fafafa;
   .logo-link {
     display: block;
     overflow: hidden;
-    //width: ($nav-height - 10);
-    width: 14px;
-    height: ($nav-height - 10);
-    margin: 5px 0;
-    /*background: transparent url('../../images/logo.png') center center no-repeat;
-    background-size: contain;*/
-    transition: all .2s ease-in-out;
+    width: $nav-height;
+    height: $nav-height;
+    //margin: 5px 0;
+    transition: all $nav-transition-speed ease-in-out;
     svg {
       display: block;
       width: 160px;
-      height: ($nav-height - 10);
-      transition: all .2s ease-in-out;
+      height: $nav-height;
+      transition: all $nav-transition-speed ease-in-out;
+      .lt-u {
+        transform: translateY(15px);
+      }
+
       .txt {
-        transition: all .2s ease-in-out;
+        transition: all $nav-transition-speed ease-in-out;
         opacity: 0;
       }
     }
@@ -73,13 +76,16 @@ $nav-bg-sticked:        #fafafa;
       background-image: none;
       height: ($nav-height-lg - 10);
       width: 230px;
-      transition: width .2s ease-in-out;
+      transition: width $nav-transition-speed ease-in-out;
       svg {
         width: 100%;
         height: ($nav-height-lg - 10);
-        transition: all .2s .2s ease-in-out;
+        transition: all $nav-transition-speed $nav-transition-speed ease-in-out;
+        .lt-u {
+          transform: translateY(0);
+        }
         .txt {
-          transition: all .2s ease-in-out;
+          transition: all $nav-transition-speed ease-in-out;
           fill: #fff;
           opacity: 1;
         }
@@ -102,12 +108,12 @@ $nav-bg-sticked:        #fafafa;
   // Navigation
   .menu-items-box {
     position: fixed;
-    top: $nav-height; left: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     padding-bottom: $nav-height;
     background-color: rgba($nav-bg-init, .9);
-    transition: all .1s ease-in-out;
+    transition: all $nav-transition-speed ease-in-out;
     opacity: .6;
     transform: translateX(-100%);
     backface-visibility: hidden;
@@ -132,7 +138,7 @@ $nav-bg-sticked:        #fafafa;
       display: block;
       margin: $spacing-sm 0;
       padding: 0 $spacing-sm;
-      transition: all .1s ease-in-out;
+      transition: all $nav-transition-speed ease-in-out;
 
       @media (min-width: $screen-sm) {
         display: inline-block;
@@ -152,7 +158,7 @@ $nav-bg-sticked:        #fafafa;
           height: 2px;
           background-color: #fff;
           opacity: 0;
-          transition: all .2s ease-in-out;
+          transition: all $nav-transition-speed ease-in-out;
           transform: translateY(4px);
 
           .sticked & {
@@ -192,6 +198,7 @@ $nav-bg-sticked:        #fafafa;
     opacity: 1;
     top: $nav-height;
     transform: translateY(0);
+    backface-visibility: hidden;
 
     @media (min-width: $screen-sm) {
       top: auto;
@@ -210,7 +217,7 @@ $nav-bg-sticked:        #fafafa;
   .data-sent-message,
   .data-error-message {
     opacity: 0;
-    transition: opacity .3s ease-in;
+    transition: opacity $nav-transition-speed ease-in;
     position: absolute;
   }
 
@@ -266,14 +273,15 @@ $nav-bg-sticked:        #fafafa;
   @media (min-width: $screen-sm) {
     visibility: hidden;
     position: fixed;
-    top: $nav-height-lg - 10;
+    //top: $nav-height-lg - 10;
     right: 0;
     background-color: rgba(0,0,0,.8);
     border-top: 0;
     padding: $spacing-md $spacing-lg;
     min-width: 250px;
     max-width: 100%;
-    transition: all .2s ease-in-out;
+    backface-visibility: hidden;
+    transition: all $nav-transition-speed ease-in-out;
     transform: translateX(100%);
     opacity: 0;
 

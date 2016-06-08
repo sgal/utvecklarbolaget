@@ -8,10 +8,11 @@ $(document).ready(function () {
     $('body').toggleClass('js-openNav');
   });
 
-  $('.menu-item').on('click touchend', function (event) {
-    event.preventDefault();
-    resetForm();
+  $('.menu-item').on('click touchend', function () {
     $('body').removeClass('js-openNav');
+    if(!$(this).hasClass('menu-contact')) {
+      $('body').removeClass('js-openContact');
+    }
   });
 
   $('.menu-contact').on('click touchend', function (event) {
