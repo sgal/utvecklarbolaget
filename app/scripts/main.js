@@ -78,7 +78,7 @@ $(document).ready(function () {
         event.preventDefault();
         event.stopPropagation();
         isNavigating = true;
-        scrollPosition = target.offset().top - 65;
+        scrollPosition = target.offset().top - 80;
 
         $('html, body').animate({
           scrollTop: scrollPosition

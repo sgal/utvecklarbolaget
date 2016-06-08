@@ -212,9 +212,9 @@ $nav-transition-speed:  .3s;
   border-top: 2px solid rgba(255,255,255,.8);
   padding: 0 $spacing-sm $spacing-md $spacing-sm;
   position: relative;
+  text-align: left;
 
   // TODO: update this style
-  .data-sent-message,
   .data-error-message {
     opacity: 0;
     transition: opacity $nav-transition-speed ease-in;
@@ -222,11 +222,22 @@ $nav-transition-speed:  .3s;
   }
 
   .data-sent-message {
+    display: none;
     top: 90px;
     font-size: 1.5rem;
     color: white;
     text-align: center;
-    padding: 0 20px;
+  }
+
+  &.data-sent {
+    .data-sent-message {
+      display: block;
+    }
+
+    .contact-form,
+    h2 {
+      display: none;
+    }
   }
 
   .data-error-message {
@@ -278,7 +289,7 @@ $nav-transition-speed:  .3s;
     background-color: rgba(0,0,0,.8);
     border-top: 0;
     padding: $spacing-md $spacing-lg;
-    min-width: 250px;
+    width: 400px;
     max-width: 100%;
     backface-visibility: hidden;
     transition: all $nav-transition-speed ease-in-out;

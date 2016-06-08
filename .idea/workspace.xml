@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62b425bd-8f1c-4851-94a9-8b3fdf6b7c37" name="Default" comment="">
+    <list default="true" id="62b425bd-8f1c-4851-94a9-8b3fdf6b7c37" name="Default" comment="Optimized logo,&#10;Fixed navigation bug for mobile,&#10;Changed some texts,&#10;Slowed down some transitions,&#10;Fixed header padding for title in calculator.&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/calculator/index.html" afterPath="$PROJECT_DIR$/app/calculator/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/calculator/main.scss" afterPath="$PROJECT_DIR$/app/calculator/main.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/main.js" afterPath="$PROJECT_DIR$/app/scripts/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/partials/_menu.scss" afterPath="$PROJECT_DIR$/app/styles/partials/_menu.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/utils.scss" afterPath="$PROJECT_DIR$/app/styles/utils.scss" />
     </list>
     <ignored path="utvecklarbolaget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +29,8 @@
             <file leaf-file-name="_base.scss" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/app/styles/partials/_base.scss">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.57768923">
-                    <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+                  <state vertical-scroll-proportion="1.3719008">
+                    <caret line="221" column="35" selection-start-line="221" selection-start-column="35" selection-end-line="221" selection-end-column="35" />
                     <folding>
                       <element signature="e#1726#2859#1" expanded="true" />
                     </folding>
@@ -64,8 +62,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.958334">
-              <caret line="71" column="46" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="46" />
+            <state vertical-scroll-proportion="-3.3333333">
+              <caret line="198" column="66" selection-start-line="0" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,18 +72,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/calculator/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125">
-              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+            <state vertical-scroll-proportion="-5.8333335">
+              <caret line="122" column="15" selection-start-line="122" selection-start-column="15" selection-end-line="122" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5555553">
-              <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.45540798">
+              <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -121,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_menu.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_menu.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/styles/partials/_menu.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1509434">
-              <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+            <state vertical-scroll-proportion="-7.8039217">
+              <caret line="236" column="18" selection-start-line="236" selection-start-column="18" selection-end-line="236" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -159,12 +157,12 @@
         <option value="$PROJECT_DIR$/app/calculator/_inputrange.scss" />
         <option value="$PROJECT_DIR$/app/styles/main.scss" />
         <option value="$PROJECT_DIR$/app/styles/partials/_base.scss" />
-        <option value="$PROJECT_DIR$/app/scripts/main.js" />
-        <option value="$PROJECT_DIR$/app/calculator/index.html" />
         <option value="$PROJECT_DIR$/app/calculator/main.scss" />
         <option value="$PROJECT_DIR$/app/styles/utils.scss" />
-        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/calculator/index.html" />
         <option value="$PROJECT_DIR$/app/styles/partials/_menu.scss" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/scripts/main.js" />
       </list>
     </option>
   </component>
@@ -590,7 +588,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465289138621</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Optimized logo,&#10;Fixed navigation bug for mobile,&#10;Changed some texts,&#10;Slowed down some transitions,&#10;Fixed header padding for title in calculator.&#10;">
+      <created>1465375603540</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1465375603540</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -634,7 +638,8 @@
     <MESSAGE value="Removed minification of HTML that broke the inline SVG-files." />
     <MESSAGE value="Cleaned up some - removed images.&#10;Fixed margins on calculator so you hopefully don't navigate when draging the range thumb.&#10;Optimized the logotype, so it's just one logotype that get altered depending on responsive state." />
     <MESSAGE value="Added social icons with links, &#10;Contact form now works in desktop-mode, &#10;Adjusted line-height for desktop-mode, &#10;Added some margin between the top section and &quot;om oss&quot;, &#10;Marked active nav-item (bottom border), &#10;Calculator contact form push down content and do not overlap footer anymore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added social icons with links, &#10;Contact form now works in desktop-mode, &#10;Adjusted line-height for desktop-mode, &#10;Added some margin between the top section and &quot;om oss&quot;, &#10;Marked active nav-item (bottom border), &#10;Calculator contact form push down content and do not overlap footer anymore" />
+    <MESSAGE value="Optimized logo,&#10;Fixed navigation bug for mobile,&#10;Changed some texts,&#10;Slowed down some transitions,&#10;Fixed header padding for title in calculator.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimized logo,&#10;Fixed navigation bug for mobile,&#10;Changed some texts,&#10;Slowed down some transitions,&#10;Fixed header padding for title in calculator.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -968,14 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5555553">
-          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.5">
@@ -1000,14 +997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/calculator/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/styles/utils.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.583333">
@@ -1018,26 +1007,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/styles/partials/_base.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57768923">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state vertical-scroll-proportion="1.3719008">
+          <caret line="221" column="35" selection-start-line="221" selection-start-column="35" selection-end-line="221" selection-end-column="35" />
           <folding>
             <element signature="e#1726#2859#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
+    <entry file="file://$PROJECT_DIR$/app/calculator/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.958334">
-          <caret line="71" column="46" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="46" />
+        <state vertical-scroll-proportion="-5.8333335">
+          <caret line="122" column="15" selection-start-line="122" selection-start-column="15" selection-end-line="122" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/styles/partials/_menu.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1509434">
-          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+        <state vertical-scroll-proportion="-7.8039217">
+          <caret line="236" column="18" selection-start-line="236" selection-start-column="18" selection-end-line="236" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3333333">
+          <caret line="198" column="66" selection-start-line="0" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45540798">
+          <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
           <folding />
         </state>
       </provider>
