@@ -20,6 +20,7 @@ $nav-transition-speed:  .3s;
   @media (min-width: $screen-sm) {
     max-width: $screen-sm;
     margin: 0 auto;
+    padding: 0 $spacing-sm;
     display: flex;
     align-items: center;
     transition: all $nav-transition-speed .1s ease-in-out;

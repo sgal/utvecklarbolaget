@@ -27,7 +27,7 @@ $calculator-send-bg: #f8f8f8;
 
   .calculator-wrap {
     max-width: $content-width-sm;
-    padding: 0 $spacing-sm 0;
+    padding: 0 $spacing-sm;
 
     @media (min-width: $screen-sm) {
       max-width: $content-width-md;
