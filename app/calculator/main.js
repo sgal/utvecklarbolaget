@@ -3,6 +3,7 @@
 
   var checkboxValue = 20;
   var formValidator = void (0);
+  var ERROR_HIDE_DELAY = 3000;
 
   var values = {
     js: 4,

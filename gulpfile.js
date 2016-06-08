@@ -103,7 +103,7 @@ gulp.task('html', ['clearscripts', 'styles', 'calculator', 'calculator:dist'], f
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('html:dist', ['styles', 'calculator'], function () {
+gulp.task('html:dist', ['styles', 'calculator', 'calculator:dist'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
@@ -114,6 +114,14 @@ gulp.task('html:dist', ['styles', 'calculator'], function () {
     .pipe($.useref())
     .pipe($.inject(gulp.src('.tmp/calculator/index.html'), {
       starttag: '<!-- inject:calculator -->',
+      removeTags: true,
+      transform: function (filePath, file) {
+        // return file contents as string
+        return file.contents.toString('utf8');
+      }
+    }))
+    .pipe($.inject(gulp.src('dist/calculator/index.html'), {
+      starttag: '<!-- inject:calculator:dist -->',
       removeTags: true,
       transform: function (filePath, file) {
         // return file contents as string
