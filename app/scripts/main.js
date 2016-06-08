@@ -106,7 +106,7 @@ $(document).ready(function () {
   });
 
   function resetForm() {
-    $('.contact-form').removeClass('data-sent');
+    $('.contact-form-wrap').removeClass('data-sent');
     $('#name, #email, #message').val('');
     $('#send-contact-details').prop('disabled', false);
   }
@@ -142,14 +142,14 @@ $(document).ready(function () {
           data: $('#contact-form').serialize()
       })
       .done(function(response) {
-        $('.contact-form').addClass('data-sent');
+        $('.contact-form-wrap').addClass('data-sent');
       })
       .fail(function (data) {
-          $('.contact-form').addClass('data-sent-error');
+          $('.contact-form-wrap').addClass('data-sent-error');
           $('#send-contact-details').prop('disabled', false);
 
           setTimeout(function () {
-            $('.contact-form').removeClass('data-sent-error');
+            $('.contact-form-wrap').removeClass('data-sent-error');
           }, ERROR_HIDE_DELAY);
       });
     }

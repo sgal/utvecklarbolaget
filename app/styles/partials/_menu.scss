@@ -1,185 +1,142 @@
 @import '../utils';
 
-$nav-bg-init:           #000;
+$nav-bg-init:           #000000;
 $nav-bg-sticked:        #fafafa;
-
 $nav-transition-speed:  .3s;
-
-.sticky-menu {
-  display: none;
-}
 
 .sticky-menu-desktop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba($nav-bg-init, .9);
   z-index: 1000;
-  //height: $nav-height;
   transition: all $nav-transition-speed .1s ease-in-out;
+  @media (min-width: $screen-sm) {
+    background-color: rgba($nav-bg-init, .9);
+  }
+}
+
+.header-wrap {
+  @media (min-width: $screen-sm) {
+    max-width: $screen-sm;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    transition: all $nav-transition-speed .1s ease-in-out;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: rgba($nav-bg-init, .9);
+  padding: 0 $spacing-sm;
+  transition: all $nav-transition-speed .1s ease-in-out;
+  @media (min-width: $screen-sm) {
+    background-color: transparent;
+  }
+}
+
+.logo-link {
+  display: block;
+  overflow: hidden;
+  width: $nav-height;
+  height: $nav-height;
+
+  svg {
+    display: block;
+    width: 160px;
+    height: $nav-height;
+    transition: all $nav-transition-speed ease-in-out;
+
+    // in order to align the U
+    .lt-u {
+      transform: translateY(15px);
+      transition: all $nav-transition-speed ease-in-out;
+    }
+
+    // Hide other letters
+    .txt {
+      transition: all $nav-transition-speed ease-in-out;
+      opacity: 0;
+    }
+  }
 
   @media (min-width: $screen-sm) {
-    //height: $nav-height-lg;
-    &.sticked {
-      background-color: rgba($nav-bg-sticked, .9);
-      .header-wrap {
-        max-width: 90%;/*$screen-sm + 50px*/;
-      }
-      .logo-link svg .txt {
-        fill: black;
-      }
-      .menu-items-box .menu-item {
-        color: black;
-        &:after {
-          background-color: black;
-        }
-      }
-    }
-  }
-
-  .header-wrap {
-    display: flex;
-    align-items: center;
-    margin: 0 $spacing-sm;
-    transition: all $nav-transition-speed ease-in-out;
-    @media (min-width: $screen-sm) {
-      max-width: $screen-sm;
-      margin: 0 auto;
-    }
-  }
-
-  // Logotype
-  .logo-link {
-    display: block;
-    overflow: hidden;
-    width: $nav-height;
-    height: $nav-height;
-    //margin: 5px 0;
-    transition: all $nav-transition-speed ease-in-out;
+    width: 190px;
     svg {
-      display: block;
-      width: 160px;
-      height: $nav-height;
-      transition: all $nav-transition-speed ease-in-out;
-      .lt-u {
-        transform: translateY(15px);
-      }
-
-      .txt {
-        transition: all $nav-transition-speed ease-in-out;
-        opacity: 0;
-      }
-    }
-
-    @media (min-width: $screen-sm) {
-      background-image: none;
+      width: 100%;
       height: ($nav-height-lg - 10);
-      width: 230px;
-      transition: width $nav-transition-speed ease-in-out;
-      svg {
-        width: 100%;
-        height: ($nav-height-lg - 10);
-        transition: all $nav-transition-speed $nav-transition-speed ease-in-out;
-        .lt-u {
-          transform: translateY(0);
-        }
-        .txt {
-          transition: all $nav-transition-speed ease-in-out;
-          fill: #fff;
-          opacity: 1;
-        }
+      .lt-u {
+        transform: translateY(0);
+      }
+      .txt {
+        fill: #fff;
+        opacity: 1;
       }
     }
   }
+}
 
-  // Hamburgermenu
-  .hamburger-menu-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 
-    @media (min-width: $screen-sm) {
-      display: none;
-    }
+// Hamburger menu
+//
+
+.hamburger-menu-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media (min-width: $screen-sm) {
+    display: none;
+  }
+}
+
+
+// Menu nav bar
+//
+
+.menu-items-box {
+  position: absolute;
+  background-color: rgba($nav-bg-init, .9);
+  width: 100%;
+  overflow: hidden;
+  padding: 0 $spacing-sm 6rem $spacing-sm;
+
+  // Initial hide navbar
+  transition: transform $nav-transition-speed ease-in-out;
+  transform: translateX(-100%);
+  backface-visibility: hidden;
+
+  @media (min-width: $screen-sm) {
+    overflow: visible;
+    position: relative;
+    text-align: right;
+    background-color: transparent;
+    transform: translateX(0);
+    padding: 0;
   }
 
-  // Navigation
-  .menu-items-box {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-bottom: $nav-height;
-    background-color: rgba($nav-bg-init, .9);
-    transition: all $nav-transition-speed ease-in-out;
-    opacity: .6;
-    transform: translateX(-100%);
-    backface-visibility: hidden;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
+  .menu-item {
+    position: relative;
+    color: #fff;
+    display: block;
+    margin: $spacing-sm 0;
 
-    @media (min-width: $screen-sm) {
-      position: relative;
-      top: 0;
-      padding-bottom: 0;
-      text-align: right;
-      transform: translateX(0);
-      background-color: transparent;
-      opacity: 1;
-      z-index: 1;
-      overflow: visible;
+    // Hide when mobile nav - form is already visible
+    &.menu-contact {
+      display: none;
     }
 
-    .menu-item {
-      position: relative;
-      color: white;
-      display: block;
-      margin: $spacing-sm 0;
-      padding: 0 $spacing-sm;
+
+    @media (min-width: $screen-sm) {
+      display: inline-block;
       transition: all $nav-transition-speed ease-in-out;
+      margin: .3rem;
 
-      @media (min-width: $screen-sm) {
+      &.menu-contact {
         display: inline-block;
-        padding: 0;
-        margin: $spacing-sm;
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        &:after {
-          content: "";
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background-color: #fff;
-          opacity: 0;
-          transition: all $nav-transition-speed ease-in-out;
-          transform: translateY(4px);
-
-          .sticked & {
-            background-color: #000;
-          }
-        }
-
-        &.active{
-          &:after {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      }
-    }
-
-    .menu-contact {
-      display: none;
-      @media (min-width: $screen-sm) {
-        display: inline-block;
-
         .js-openContact & {
           &:after {
             opacity: 1;
@@ -187,93 +144,75 @@ $nav-transition-speed:  .3s;
           }
         }
       }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        opacity: 0;
+        transition: all $nav-transition-speed ease-in-out;
+        transform: translateY(4px);
+
+        .sticked & {
+          background-color: #000;
+        }
+      }
+
+      &.active{
+        &:after {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    @media (min-width: $screen-md) {
+      margin: $spacing-sm;
     }
   }
 }
 
-// Nav toggle
+
+// Nav is opened
+//
+
 .js-openNav {
   overflow: hidden;
-  .menu-items-box {
-    opacity: 1;
-    top: $nav-height;
-    transform: translateY(0);
-    backface-visibility: hidden;
+  .sticky-menu-desktop {
+    height: 100%;
+    overflow: auto;
+  }
 
-    @media (min-width: $screen-sm) {
-      top: auto;
-    }
+  .menu-items-box {
+    transform: translateY(0);
   }
 }
 
 
 // Contact form
-.contact-form {
+//
+
+.contact-form-wrap {
   border-top: 2px solid rgba(255,255,255,.8);
-  padding: 0 $spacing-sm $spacing-md $spacing-sm;
   position: relative;
-  text-align: left;
-
-  // TODO: update this style
-  .data-error-message {
-    opacity: 0;
-    transition: opacity $nav-transition-speed ease-in;
-    position: absolute;
-  }
-
-  .data-sent-message {
-    display: none;
-    top: 90px;
-    font-size: 1.5rem;
-    color: white;
-    text-align: center;
-  }
-
-  &.data-sent {
-    .data-sent-message {
-      display: block;
-    }
-
-    .contact-form,
-    h2 {
-      display: none;
-    }
-  }
-
-  .data-error-message {
-    border: 1px solid $error-border-color;
-    color: $error-border-color;
-    padding: $error-padding;
-    z-index: 9;
-    background-color: $error-bg-color;
-    left: 0;
-  }
-
-  &.data-sent {
-    .data-sent-message {
-      opacity: 1;
-    }
-
-    form {
-      opacity: 0;
-    }
-  }
-
-  &.data-sent-error {
-    .data-error-message {
-      opacity: 1;
-    }
-  }
 
   .contact-form-header {
     color: #fff;
-    margin: $spacing-sm 0 0 0;
+    margin: $spacing-sm 0 0;
     font-weight: normal;
   }
 
   .contact-form-send {
     text-align: right;
-    margin-top: $spacing-sm;
+    margin-top: $spacing-md;
   }
 
   .form-field {
@@ -281,25 +220,82 @@ $nav-transition-speed:  .3s;
     margin-bottom: $contact-field-margin;
   }
 
+  // Validation
+
+  .data-error-message,
+  .data-sent-message {
+    display: none;
+  }
+
+  &.data-sent {
+    .data-sent-message {
+      display: block;
+      font-size: $font-size-lg;
+      color: #fff;
+      text-align: center;
+      margin-top: $spacing-md
+    }
+    .contact-form,
+    .contact-form-header {
+      display: none;
+    }
+  }
+
+  &.data-sent-error {
+    .data-error-message {
+      display: block;
+      border: 1px solid $error-border-color;
+      color: $error-border-color;
+      padding: $error-padding;
+      background-color: $error-bg-color;
+      margin-top: $spacing-md
+    }
+  }
+
   @media (min-width: $screen-sm) {
-    visibility: hidden;
-    position: fixed;
-    //top: $nav-height-lg - 10;
+    text-align: left;
+    position: absolute;
     right: 0;
-    background-color: rgba(0,0,0,.8);
-    border-top: 0;
-    padding: $spacing-md $spacing-lg;
+    background-color: rgba($nav-bg-init, .9);
     width: 400px;
-    max-width: 100%;
+    padding: $spacing-md;
+    border-top: 0;
     backface-visibility: hidden;
-    transition: all $nav-transition-speed ease-in-out;
     transform: translateX(100%);
     opacity: 0;
+    visibility: hidden;
+    transition: all $nav-transition-speed ease-in-out;
 
     .js-openContact & {
-      visibility: visible;
       transform: translateX(0);
       opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+
+@media (min-width: $screen-sm) {
+  .sticky-menu-desktop {
+    // When menu get sticky
+    //
+    &.sticked {
+      background-color: rgba($nav-bg-sticked, .9);
+
+      .header-wrap {
+        max-width: 90%;
+      }
+
+      .logo-link svg .txt {
+        fill: black;
+      }
+
+      .menu-items-box .menu-item {
+        color: black;
+        &:after {
+          background-color: black;
+        }
+      }
     }
   }
 }
