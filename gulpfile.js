@@ -55,7 +55,7 @@ gulp.task('calculatorstyles', function () {
     .pipe($.sass({
       style: 'expanded'
     }))
-    .pipe($.autoprefixer({browsers: ['last 2 versions']}))
+    .pipe($.autoprefixer({browsers: ['last 4 versions']}))
     .pipe(gulp.dest('.tmp/calculatorstyles'));
 });
 
@@ -65,7 +65,7 @@ gulp.task('styles', function () {
     .pipe($.sass({
       style: 'expanded'
     }))
-    .pipe($.autoprefixer({browsers: ['last 2 versions']}))
+    .pipe($.autoprefixer({browsers: ['last 4 versions']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
 
