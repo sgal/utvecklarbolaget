@@ -18,9 +18,6 @@ $calculator-send-bg: #f8f8f8;
 
   position: relative;
   font: normal #{$font-size-base}/#{$line-height} $font-family-base;
-  @media (min-width: $screen-sm) {
-    line-height: $line-height-sm;
-  }
 
   * {
     box-sizing: border-box;
@@ -48,6 +45,7 @@ $calculator-send-bg: #f8f8f8;
       font-weight: normal;
       font-size: 2rem;
       margin: $spacing-sm 0 0;
+      text-transform: uppercase;
     }
 
     p {
