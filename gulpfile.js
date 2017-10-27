@@ -108,8 +108,13 @@ gulp.task('html:dist', ['styles', 'calculator', 'calculator:dist'], function () 
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.csso()))
+    .pipe($.if(function(file) {
+      return /\.js$/.test(file.path);
+    }, $.uglify()))
+    .on('error', function (err) { console.log('[Error]', err.toString()); })
+    .pipe($.if(function(file) {
+      return /\.css$/.test(file.path);
+    }, $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.inject(gulp.src('.tmp/calculator/index.html'), {
