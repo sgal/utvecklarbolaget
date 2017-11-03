@@ -1,3 +1,7 @@
+function isSmallScreen() {
+  return $(window).width() <= 768;
+}
+
 $(document).ready(function () {
   var ERROR_HIDE_DELAY = 3000;
   var validator = void (0);
@@ -20,6 +24,17 @@ $(document).ready(function () {
     event.preventDefault();
     resetForm();
     $('body').toggleClass('js-openContact');
+  });
+
+  $('.contact-now').on('click touchend', function (event) {
+    event.preventDefault();
+    resetForm();
+
+    if (isSmallScreen()) {
+      $('body').toggleClass('js-openNav');
+    } else {
+      $('body').toggleClass('js-openContact');
+    }
   });
 
 
@@ -66,6 +81,10 @@ $(document).ready(function () {
 
   handleScrollToHighlightMenu();
   justLoaded = false;
+
+  $('.more').one('click touchend', function (event) {
+    $(this).toggleClass('more');
+  });
 
   // smooth anchor scrolling
   $('a[href*=#]:not([href=#])').click(function (event) {

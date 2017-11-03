@@ -116,6 +116,26 @@ $quotation-mark-size: 2rem;
     &:after {
       content: "";
     }
+
+    .more {
+      font-size: 0;
+
+      &:after {
+        color: #000;
+        content: "...";
+        font-size: 1rem;
+      }
+      &:hover {
+        &:after {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .less {
+      font-size: 1rem;
+    }
   }
 
   footer {
@@ -130,6 +150,16 @@ $quotation-mark-size: 2rem;
         margin: 0 auto;
       }
     }
+  }
+}
+
+.contact-now {
+  color: #000;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 
