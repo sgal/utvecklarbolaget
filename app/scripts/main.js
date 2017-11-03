@@ -1,7 +1,3 @@
-function isSmallScreen() {
-  return $(window).width() <= 768;
-}
-
 $(document).ready(function () {
   var ERROR_HIDE_DELAY = 3000;
   var validator = void (0);
@@ -30,7 +26,7 @@ $(document).ready(function () {
     event.preventDefault();
     resetForm();
 
-    if (isSmallScreen()) {
+    if ($(window).width() <= 768) {
       $('body').toggleClass('js-openNav');
     } else {
       $('body').toggleClass('js-openContact');
