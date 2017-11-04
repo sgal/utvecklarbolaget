@@ -172,4 +172,24 @@ $(document).ready(function () {
       });
     }
   });
+
+  var typed = new Typed("#typed-strings", {
+    strings : [
+      "Hej, kul att se dig!",
+      "Vi gör saker lite annorlunda.",
+      "Vi anser att utvecklare <br/> förtjänar mer.",
+      "Vi har således sverige <br/> konkurrenskraftigaste lön(?).",
+      "Vi gillar ett enklare liv.",
+      "Därför hjälper vi till med <br/> bank, boende, försäkringar osv.",
+      "Vi tror på frihet <br/> och entreprenörskap.",
+      "Så vi ger bort ett aktiebolag <br/> till våra anställda <br/> när de säger upp sig.",
+      "Vi bygger framtiden - I kod, i människa, i bolag!"
+    ],
+    typeSpeed: 30,
+    backSpeed: 10,
+    backDelay: 4000,
+    startDelay: 100,
+    smartBackspace: false,
+    loop: false
+  });
 });

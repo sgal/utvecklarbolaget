@@ -42,6 +42,37 @@
       height: 450px;
     }
 
+    .type {
+      max-width: $content-width-sm;
+      .typed-cursor {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding-left: 5px;
+        animation: blink 1s infinite;
+      }
+
+      @media (min-width: $screen-sm) {
+        max-width: $content-width-md;
+        .typed-cursor {
+          font-size: 2.3rem;
+        }
+      }
+      @media (min-width: $screen-md) {
+        max-width: $content-width-lg;
+        .typed-cursor {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  @keyframes blink {
+    0%, 100%   {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 
   .section-title {
@@ -59,6 +90,7 @@
 
 
 .front-header {
+  display: inline;
   font-size: 1.5rem;
   color: #fff;
   letter-spacing: -1.1px;
