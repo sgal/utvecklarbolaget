@@ -27,12 +27,12 @@
     justify-content: center;
     max-width: 100%;
     margin: 0 0 $spacing-lg;
-    padding: 0;
+    padding: $nav-height 0 0 0;
     text-align: center;
     background-image: linear-gradient(to bottom, $color-primary, $color-primary-dark);
 
     transition: height .1s ease-in-out;
-    height: 250px;
+    height: 260px;
 
     @media (min-width: $screen-sm) {
       height: 400px;
@@ -44,10 +44,10 @@
 
     .type {
       max-width: $content-width-sm;
+      padding-right: 2px;
       .typed-cursor {
         font-size: 1.5rem;
         font-weight: bold;
-        padding-left: 5px;
         animation: blink 1s infinite;
       }
 
