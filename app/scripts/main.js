@@ -181,7 +181,7 @@ $(document).ready(function () {
       "Vi gillar ett enklare liv",
       "Vi tror på frihet <br/> och entreprenörskap",
       "Vi ger bort ett aktiebolag <br/> när folk säger upp sig",
-      "Vi bygger framtiden <br/> - I kod, i människa, i bolag!"
+      "Vi bygger framtiden <br/> - i kod, i människa, i bolag!"
     ],
     typeSpeed: 40,
     backSpeed: 10,
