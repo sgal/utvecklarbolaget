@@ -175,6 +175,7 @@ $(document).ready(function () {
 
   var typed = new Typed("#typed-strings", {
     strings : [
+      "",
       "Hej, kul att se dig!",
       "Vi gör saker lite annorlunda",
       "Vi gillar ett enklare liv",
@@ -185,7 +186,7 @@ $(document).ready(function () {
     typeSpeed: 40,
     backSpeed: 10,
     backDelay: 4000,
-    startDelay: 3000,
+    startDelay: 0,
     smartBackspace: false,
     loop: false
   });
