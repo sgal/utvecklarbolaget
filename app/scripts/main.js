@@ -180,8 +180,8 @@ $(document).ready(function () {
       "Genom att ge bort ett <br/> Aktiebolag inom tre år efter anställning",
       "Vi bygger framtiden <br/> - I kod, i människa, i bolag!"
     ],
-    typeSpeed: 10,
-    backSpeed: 8,
+    typeSpeed: 40,
+    backSpeed: 10,
     backDelay: 2500,
     startDelay: 0,
     smartBackspace: false,
