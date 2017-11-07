@@ -178,7 +178,7 @@ $(document).ready(function () {
       "Vi låter utveckling, frihet <br/> och entreprenörskap <br/> genomsyra allt vi gör",
       "Vi hjälper till och med våra <br/> medarbetare att själva <br/> bli entreprenörer",
       "Genom att ge bort ett <br/> aktiebolag inom tre år <br/> efter anställning",
-      "Vi bygger framtiden <br/> - I kod, i människa, i bolag!"
+      "Vi bygger framtiden <br/> - i kod, i människa, i bolag!"
     ],
     typeSpeed: 40,
     backSpeed: 10,
