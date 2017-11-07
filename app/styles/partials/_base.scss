@@ -52,7 +52,7 @@
       }
 
       @media (min-width: $screen-sm) {
-        max-width: $content-width-md;
+        max-width: 700px;
         .typed-cursor {
           font-size: 2.3rem;
         }
@@ -150,17 +150,18 @@ $quotation-mark-size: 2rem;
     }
 
     .more {
-      font-size: 0;
-
-      &:after {
-        color: #000;
-        content: "...";
-        font-size: 1rem;
-      }
-      &:hover {
+      &.hide {
+        font-size: 0;
         &:after {
-          text-decoration: underline;
-          cursor: pointer;
+          color: #000;
+          content: "...";
+          font-size: 1rem;
+        }
+        &:hover {
+          &:after {
+            text-decoration: underline;
+            cursor: pointer;
+          }
         }
       }
     }

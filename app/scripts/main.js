@@ -25,14 +25,12 @@ $(document).ready(function () {
   $('.contact-now').on('click touchend', function (event) {
     event.preventDefault();
     resetForm();
-
-    if ($(window).width() <= 768) {
+    if ($(window).width() <= 767) {
       $('body').toggleClass('js-openNav');
     } else {
       $('body').toggleClass('js-openContact');
     }
   });
-
 
   var isNavigating = false,
     disableScroll = false,
@@ -78,8 +76,8 @@ $(document).ready(function () {
   handleScrollToHighlightMenu();
   justLoaded = false;
 
-  $('.more').one('click touchend', function (event) {
-    $(this).toggleClass('more');
+  $('.more').on('click touchend', function (event) {
+    $(this).toggleClass('hide');
   });
 
   // smooth anchor scrolling
@@ -176,16 +174,15 @@ $(document).ready(function () {
   var typed = new Typed("#typed-strings", {
     strings : [
       "",
-      "Hej, kul att se dig!",
-      "Vi gör saker lite annorlunda",
-      "Vi gillar ett enklare liv",
-      "Vi tror på frihet <br/> och entreprenörskap",
-      "Vi ger bort ett aktiebolag <br/> när folk säger upp sig",
-      "Vi bygger framtiden <br/> - i kod, i människa, i bolag!"
+      "Hej, kul att se dig! <br/> Vi är ett företag som gör <br/> saker lite annorlunda",
+      "Vi låter utveckling, frihet och entreprenörskap <br/> genomsyra allt vi gör <br/> från anställning till kundrelation",
+      "Vi hjälper till och med våra medarbetare att själva bli entreprenörer",
+      "Genom att ge bort ett <br/> Aktiebolag inom tre år efter anställning",
+      "Vi bygger framtiden <br/> - I kod, i människa, i bolag!"
     ],
-    typeSpeed: 40,
-    backSpeed: 10,
-    backDelay: 4000,
+    typeSpeed: 10,
+    backSpeed: 8,
+    backDelay: 2500,
     startDelay: 0,
     smartBackspace: false,
     loop: false
