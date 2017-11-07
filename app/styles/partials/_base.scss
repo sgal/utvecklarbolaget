@@ -179,8 +179,8 @@ $quotation-mark-size: 2rem;
       color: $color-gray-mute;
       font-size: $font-size-sm;
       @media (min-width: $screen-sm) {
-        width: 84%;
-        margin: 0 auto;
+        width: 100%;
+        padding-right: 1rem;
       }
     }
   }

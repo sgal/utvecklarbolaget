@@ -177,12 +177,11 @@ $(document).ready(function () {
       "Hej, kul att se dig! <br/> Vi är ett företag som gör <br/> saker lite annorlunda",
       "Vi låter utveckling, frihet <br/> och entreprenörskap <br/> genomsyra allt vi gör",
       "Vi hjälper till och med våra <br/> medarbetare att själva <br/> bli entreprenörer",
-      "Genom att ge bort ett <br/> aktiebolag inom tre år <br/> efter anställning",
       "Vi bygger framtiden <br/> - i kod, i människa, i bolag!"
     ],
     typeSpeed: 40,
     backSpeed: 10,
-    backDelay: 2500,
+    backDelay: 700,
     startDelay: 0,
     smartBackspace: false,
     loop: false
