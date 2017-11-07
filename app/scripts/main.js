@@ -175,9 +175,9 @@ $(document).ready(function () {
     strings : [
       "",
       "Hej, kul att se dig! <br/> Vi är ett företag som gör <br/> saker lite annorlunda",
-      "Vi låter utveckling, frihet och entreprenörskap <br/> genomsyra allt vi gör <br/> från anställning till kundrelation",
-      "Vi hjälper till och med våra medarbetare att själva bli entreprenörer",
-      "Genom att ge bort ett <br/> Aktiebolag inom tre år efter anställning",
+      "Vi låter utveckling, frihet <br/> och entreprenörskap <br/> genomsyra allt vi gör",
+      "Vi hjälper till och med våra <br/> medarbetare att själva <br/> bli entreprenörer",
+      "Genom att ge bort ett <br/> Aktiebolag inom tre år <br/> efter anställning",
       "Vi bygger framtiden <br/> - I kod, i människa, i bolag!"
     ],
     typeSpeed: 40,
