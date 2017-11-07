@@ -179,9 +179,9 @@ $(document).ready(function () {
       "Vi hjälper till och med våra <br/> medarbetare att själva <br/> bli entreprenörer",
       "Vi bygger framtiden <br/> - i kod, i människa, i bolag!"
     ],
-    typeSpeed: 40,
+    typeSpeed: 35,
     backSpeed: 10,
-    backDelay: 700,
+    backDelay: 1300,
     startDelay: 0,
     smartBackspace: false,
     loop: false
