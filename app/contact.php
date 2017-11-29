@@ -11,7 +11,7 @@
                 header('X-PHP-Response-Code: '.$newcode, true, $newcode);
                 if(!headers_sent())
                     $code = $newcode;
-            }       
+            }
             return $code;
         }
     }
@@ -32,7 +32,7 @@
         }
 
         // Set the recipient email address.
-        $recipient = "sg@utvecklarbolaget.se";
+        $recipient = "ef@utvecklarbolaget.se";
 
         // Set the email subject.
         $subject = "New contact from $name";
